@@ -13,6 +13,7 @@ class sameGS extends GSController
 	current_month		= 0;
 	current_year		= 0;
 	current_date		= 0;
+	flow_days		= 0;
 	last_month		= 0;
 
 	goals			= [];
@@ -67,6 +68,35 @@ function sameGS::Start()	{
 	while (true) {
 		this.__runner();
 		this.Sleep(sleeptime);
+	}
+}
+
+function sameGS::__runner()	{
+	this.current_date	= GSDate.GetCurrentDate();
+	this.current_month	= GSDate.GetMonth(this.current_date);
+	this.CheckEvents();
+	
+	if(this.current_date != this.last_date) {
+		this.flow_days += (this.current_date - this.last_date);
+	}
+	
+	this.last_date = this.current_date;
+
+	if(this.flow_days >= 1) {
+		this.flow_days = 0;
+		this.__daycycle();
+	}
+
+	if(this.current_month == this.last_month) {
+		return;
+	}
+
+	this.current_year = GSDate.GetYear(this.current_date);
+	this.last_month = this.current_month;
+	this.__monthcycle();
+
+	if(this.current_month == 1) {
+		this.__yearcycle();
 	}
 }
 
