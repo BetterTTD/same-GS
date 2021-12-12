@@ -1,2 +1,2 @@
 
-SELF_VERSION <- 0;
+SELF_VERSION <- 1;
