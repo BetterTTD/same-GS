@@ -1,92 +1,72 @@
 require("version.nut");
 
-class SameClass extends GSController 
+class sameGS extends GSController
 {
-  _loaded_data = null;
-  _loaded_from_version = null;
-  _init_done = null;
+	data			= null;
+	companies		= [];
+	clients			= [];
 
-  constructor()
-  {
-    this._init_done = false;
-    this._loaded_data = null;
-    this._loaded_from_version = null;
-  }
+	last_date		= 0;
+	sleeptime		= 74;
+	firstrun		= true;
+	from_save		= false;
+	current_month		= 0;
+	current_year		= 0;
+	current_date		= 0;
+	last_month		= 0;
+
+	goals			= [];
+	claim_pop		= 250;
+	storypage		= [];
+	storyelem		= [];
+	signlist		= null;
+	log			= 0;
+
+	constructor()
+	{
+		this.clients	= GSClientList();
+		this.signlist	= GSList();
+		this.companies	= GSList();
+	}
+
+	function		__pregs();
+	function 		__runner();
+	function		__daycycle();
+	function		__monthcycle();
+	function		__yearcycle();
+	function		__getcompany(id);
+	function		__resetcompany(companyid);
+	function		__signplace(tileindex, text);
+	function		__signremove(tileindex);
+	function		__log(string, level = 0);
+	function		__msgsend(txt);
+	function		__storyinit();
+	function		__story();
 }
 
-function MainClass::Start()
-{
+function sameGS::Start()	{
+	Log("# ___ same-GS starts ___ #");
 
-  if (Helper.HasWorldGenBug()) GSController.Sleep(1);
+	this.log		= GSController.GetSetting("LogLevel");
+	if(this.from_save == false) {
+		for(local id = 0; id < 4096; id++) {
+			if(GSClient.ResolveClientID(id) != GSClient.CLIENT_INVALID) {
+				this.clients.append( Client(id) );
+			}
+		}
+		for(local id = 0; id < 16; id++) {
+			if(GSCompany.ResolveCompanyID(id) != GSCompany.COMPANY_INVALID) {
+				this.companies.append( Company(id) );
+			}
+		}
+	}
 
-  // this.Init();
+	this.__pregs();
+	this.__storyinit();
 
-  GSController.Sleep(1);
-
-  local last_loop_date = GSDate.GetCurrentDate();
-
-  while (true) {
-    local loop_start_tick = GSController.GetTick();
-
-    this.HandleEvents();
-
-    local current_date = GSDate.GetCurrentDate();
-
-    if (last_loop_date != null) {
-      local year = GSDate.GetYear(current_date);
-
-      local month = GSDate.GetMonth(current_date);
-
-      if (year != GSDate.GetYear(last_loop_date)) {
-        this.EndOfYear();
-      }
-
-      if (month != GSDate.GetMonth(last_loop_date)) {
-        this.EndOfMonth();
-      }
-
-    }
-
-    last_loop_date = current_date;
-
-    local ticks_used = GSController.GetTick() - loop_start_tick;
-
-    GSController.Sleep(max(1, 5 * 74 - ticks_used));
-  }
-
+	while (true) {
+		this.__runner();
+		this.Sleep(sleeptime);
+	}
 }
 
-function MainClass::Init()
-{
-  if (this._loaded_data != null) {
-    // Copy loaded data from this._loaded_data to this.*
-    // or do whatever you like with the loaded data
-  } else {
-    // construct goals etc.
-  }
-
-  this._init_done = true; // Indicate that all data structures has been initialized/restored.
-  this._loaded_data = null; // the loaded data has no more use now after that _init_done is true.
-}
-
-function MainClass::HandleEvents()
-{
-  if(GSEventController.IsEventWaiting()) {
-    local ev = GSEventController.GetNextEvent();
-    if (ev == null) return;
-
-    local ev_type = ev.GetEventType();
-    switch (ev_type) {
-      case GSEvent.ET_COMPANY_NEW: {
-        local company_event = GSEventCompanyNew.Convert(ev);
-        local company_id = company_event.GetCompanyID();
-
-        // Here you can welcome the new company
-        Story.ShowMessage(company_id, GSText(GSText.STR_MOTD, company_id));
-        break;
-      }
-
-      // other events ...
-    }
-  }
-}
