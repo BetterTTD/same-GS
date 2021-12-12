@@ -46,7 +46,7 @@ class sameGS extends GSController
 }
 
 function sameGS::Start()	{
-	Log("# ___ same-GS starts ___ #");
+	// Log("### ___ same-GS starts ___ ###");
 
 	this.log		= GSController.GetSetting("LogLevel");
 	if(this.from_save == false) {
