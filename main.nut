@@ -66,7 +66,7 @@ function sameGS::Start()	{
 	this.__storyinit();
 
 	while (true) {
-		this.__runner();
+		// this.__runner();
 		this.Sleep(sleeptime);
 	}
 }
@@ -74,7 +74,7 @@ function sameGS::Start()	{
 function sameGS::__runner()	{
 	this.current_date	= GSDate.GetCurrentDate();
 	this.current_month	= GSDate.GetMonth(this.current_date);
-	this.CheckEvents();
+	// this.CheckEvents();
 	
 	if(this.current_date != this.last_date) {
 		this.flow_days += (this.current_date - this.last_date);
