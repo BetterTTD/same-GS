@@ -5,7 +5,7 @@ class sameGSInfo extends GSInfo {
     function GetName()          { return "same-GS"; }
     function GetDescription()   { return "TeamGame script for our game servers"; }
     function GetVersion()       { return SELF_VERSION; }
-    function GetDate()          { return "2021-12-12"; }
+    function GetDate()          { return "2021-12-14"; }
     function CreateInstance()   { return "sameGS"; }
     function GetShortName()     { return "TGGS"; }
     function GetAPIVersion()    { return "1.12"; }
