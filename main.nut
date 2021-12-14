@@ -62,12 +62,20 @@ function sameGS::HandleEvents()
 		if (ev == null) return;
 		local ev_type = ev.GetEventType();
 		switch (ev_type) {
-			case GSEvent.ET_COMPANY_NEW: {
-				local company_event = GSEventCompanyNew.Convert(ev);
-				local company_id = company_event.GetCompanyID();
-				Story.ShowMessage(company_id, GSText(GSText.STR_MOTD, company_id));
-				break;
+			case GSEvent.ET_GOAL_QUESTION_ANSWER: {
+				
 			}
 		}
 	}
+}
+
+
+function sameGS::EndOfMonth()
+{
+}
+
+
+
+function sameGS::EndOfYear()
+{
 }
