@@ -52,3 +52,22 @@ function sameGS::Init()
 	this._init_done = true;
 	this._loaded_data = null;
 }
+
+
+
+function sameGS::HandleEvents()
+{
+	if(GSEventController.IsEventWaiting()) {
+		local ev = GSEventController.GetNextEvent();
+		if (ev == null) return;
+		local ev_type = ev.GetEventType();
+		switch (ev_type) {
+			case GSEvent.ET_COMPANY_NEW: {
+				local company_event = GSEventCompanyNew.Convert(ev);
+				local company_id = company_event.GetCompanyID();
+				Story.ShowMessage(company_id, GSText(GSText.STR_MOTD, company_id));
+				break;
+			}
+		}
+	}
+}
