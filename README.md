@@ -1,2 +1,2 @@
-# TGsameGS
+# same-GS
 Server game script
