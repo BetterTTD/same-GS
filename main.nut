@@ -41,3 +41,14 @@ function sameGS::Start()
 		GSController.Sleep(10);
 	}
 }
+
+
+
+function sameGS::Init()
+{
+	if (this._loaded_data != null) {
+		} else {
+	}
+	this._init_done = true;
+	this._loaded_data = null;
+}

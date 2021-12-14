@@ -7,8 +7,8 @@ class sameGSInfo extends GSInfo {
     function GetVersion()       { return SELF_VERSION; }
     function GetDate()          { return "2021-12-14"; }
     function CreateInstance()   { return "sameGS"; }
-    function GetShortName()     { return "TGGS"; }
-    function GetAPIVersion()    { return "1.12"; }
+    function GetShortName()     { return "s-GS"; }
+    function GetAPIVersion()    { return "1.2"; }
     function GetURL()           { return "https://github.com/same-f/same-GS"; }
 
 //     function GetSettings()      {
