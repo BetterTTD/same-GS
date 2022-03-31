@@ -1,0 +1,7 @@
+STR_MOTD        :Welcome to {ORANGE}"TG_Vanilla server" {GREEN}{COMPANY}!{}{BLACK}{}Game years: 1940-2055{}{ORANGE}Company will be removed in 4 hours after last player leave it.{}{}{GREEN}Please keep in mind that there are rules on this server.{}{}{BLACK}- {RED}No stealing {BLACK}: you cannot connect to any taken industry. Not primary, not secondary. Except power plant. {}{}- {RED}No teleporting {BLACK}: make distance between station name and vehicle arrival point minimal. You still can spread station around to get more cargo, transfer stations mus be physically connected (no more than 2 tiles between platforms). {}{}- {RED}No city grids {BLACK}: 3x3 road cells to make city grow faster. Only tiny fixes inside the city. If you are really need some roads in city, make sure you don't miss «natural» 3x3 grid. {}{}{RED}Do not destroy the central tile and roads of the city! {}{RED}Forbidden: Blocking / Griefing / Trolling {}{}{}{}{BLACK}- {ORANGE}You can also find us on the social links: {}{}{BLACK}- https://tg-ottd.org {}{}- https://t.me/TG_OpenTTD {}{}- https://discord.gg/qXBPgCpsnT
+
+STR_!HOLD!_TITLE        : *placeholder*
+STR_RULES_TITLE         : Rules
+STR_MODERATORS_TITLE    : Moderators and admin stuff
+STR_LINKS_TITLE         : Join us
+STR_WELCOME_TITLE       : Welcome on TeamGame_OpenTTD community server
