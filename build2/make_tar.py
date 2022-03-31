@@ -7,7 +7,7 @@ gs_name = "same-GS"
 gs_pack_name = gs_name.replace(" ", "-")
 
 version = -1
-for line in open("version.nut"):
+for line in open("same-gs/version.nut"):
 
 	r = re.search('SELF_VERSION\s+<-\s+([0-9]+)', line)
 	if(r != None):

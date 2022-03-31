@@ -3,18 +3,9 @@
 import os
 import re
 
-# ----------------------------------
-# Definitions:
-# ----------------------------------
-
-# Game Script name
 gs_name = "same-GS"
 gs_pack_name = gs_name.replace(" ", "-")
 
-# ----------------------------------
-
-
-# Script:
 version = -1
 for line in open("version.nut"):
 
