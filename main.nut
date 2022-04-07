@@ -50,7 +50,7 @@ function TeamDuude::HandleEvents() {
 					local c = e.GetCompanyID();
 					GSLog.Warning("New company incoming " + GSCompany.GetName(c));
 					CompanyDuude.NewCompany(c);
-					GSStoryPage.Show(CompanyDuude.GetPageID(c, 0));
+					GSStoryPage.Show(CompanyDuude.GetPageID(15, 0));
 					break;
 			}
 

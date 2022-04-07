@@ -5,7 +5,11 @@ STR_STUFF_TITLE         : Administration::Stuff
 STR_LINKS_TITLE         : Links::TeamGame_OpenTTD
 STR_PAGE_TITLE          : PAGE_TITLE_PLACEHOLDER
 
-STR_WELCOME_WELCOME     : {BLACK} - Welcome to {GREEN} 'TG Vanilla server' {BLACK} by {ORANGE} 'TeamGame_OpenTTD' !!! {}{}{STRING}
+STR_WELCOME_WELCOME     : {BLACK} - Welcome to {GREEN}{STRING}{BLACK} by {ORANGE}''TeamGame_OpenTTD''{BLACK} !!! {}{}{STRING}
+STR_SERVER_DEFAULT      : ''This server''
+STR_SERVER_VANILLA      : ''TG Vanilla server''
+STR_SERVER_WELCOME      : ''TG Welcome server''
+STR_SERVER_PUBLIC       : ''TG Public server''
 STR_WELCOME_TEXT1       : {BLACK}-{ORANGE} TeamGame_OpenTTD  - {BLACK} is an open community where everyone is welcome to join in and play. {}{}{LTBLUE}{CHECKMARK}{BLACK} This does mean that we expect decent behaviour from the players to keep it fun for everyone and to stop things from getting out of hand. {} We are community that promotes the coop style of playing games. Instead of competing with each other, we group together and work towards one goal with our combined efforts. {}{}{STRING}
 STR_WELCOME_TEXT2       : {LTBLUE}{CHECKMARK}{BLACK} Be friendly. This seems like an obvious one, but in practice turns out not to be. If you are in a grumpy mood, don’t make us grumpy by sharing it. Not only does the “being nice” cause a better atmosphere, it also gets you more help from others.{}{}{STRING}
 STR_WELCOME_TEXT3       : {BLACK}-{ORANGE} Servers: {BLACK} Our community consists of three main servers. {}{}{BLACK}{RIGHT_ARROW}{ORANGE} TG Vanilla server {}{BLACK}{RIGHT_ARROW}{ORANGE} TG Welcome server {}{BLACK}{RIGHT_ARROW}{ORANGE} TG Public server {}{}

@@ -36,15 +36,20 @@ function CompanyDuude::NewCompany(cID) {
     local logpage = " ";
     for (local p = 0; p < 3; p++)   { logpage+="-"+CompanyDuude.cPage[x+p]+" "; }
     GSLog.Info("Added company #"+cID+" "+GSCompany.GetName(cID)+" using pages "+logpage);
-    if (CacheDuuude.GetData("companyDate", cID) == 0)   { CacheDuuude.SetData("companyDate", cID, GSDate.GetCurrentDate()); }
-    CacheDuuude.Monitoring();
+    if (CacheDuude.GetData("companyDate", cID) == 0)   { CacheDuude.SetData("companyDate", cID, GSDate.GetCurrentDate()); }
+    CacheDuude.Monitoring();
 }
 
 function CompanyDuude::Init() {
     if (!GSStoryPage.IsValidStoryPage(CompanyDuude.GetPageID(15, 0))) {
     CompanyDuude.cPage[15 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_WELCOME_TITLE));
     }
-    CompanyDuude.cPage[15 *3 + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(15, 0), CompanyDuude.cPage[15 * 3 +1], GSText(GSText.STR_WELCOME_WELCOME, GSText(GSText.STR_WELCOME_AWARE), GSText(GSText.STR_WELCOME_RULES)));
+    local serverName = GSController.GetSetting("serverName");
+    if (serverName == 1)                { serverName = GSText(GSText.STR_SERVER_VANILLA); }
+    else if (serverName == 2)           { serverName = GSText(GSText.STR_SERVER_WELCOME); }
+    else if (serverName == 3)           { serverName = GSText(GSText.STR_SERVER_PUBLIC); }
+    else                                { serverName = GSText(GSText.STR_SERVER_DEFAULT); }
+    CompanyDuude.cPage[15 *3 + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(15, 0), CompanyDuude.cPage[15 * 3 +1], GSText(GSText.STR_WELCOME_WELCOME, serverName, GSText(GSText.STR_WELCOME_AWARE), GSText(GSText.STR_WELCOME_RULES)));
     CompanyDuude.cPage[15 *3 + 2] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(15, 0), CompanyDuude.cPage[15 * 3 +2], GSText(GSText.STR_WELCOME_TEXT1, GSText(GSText.STR_WELCOME_TEXT2), GSText(GSText.STR_WELCOME_TEXT3)));
 
     if (!GSStoryPage.IsValidStoryPage(CompanyDuude.GetPageID(16, 0))) {
