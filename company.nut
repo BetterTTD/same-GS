@@ -1,4 +1,4 @@
-class CompanyDuuude {
+class CompanyDuude {
     static cPage = [];
     static gElement = [];
     static cPoints = [];
@@ -14,67 +14,67 @@ class CompanyDuuude {
     function StoryUpgrade();
 }
 
-function CompanyDuuude::GetPageID(cID, opt) {
+function CompanyDuude::GetPageID(cID, opt) {
     if (cID > 21 || cID < 0)  { GSLog.Error("Error: can't set pageID - Bad Value" + cID); return -1; }
     local x = cID * 3;
     if (cID == 15 || cID > 16)            { opt = 0; }
-    return CompanyDuuude.cPage[x + opt];
+    return CompanyDuude.cPage[x + opt];
 }
 
-function CompanyDuuude::NewCompany(cID) {
+function CompanyDuude::NewCompany(cID) {
     if (GSCompany.ResolveCompanyID == GSCompany.COMPANY_INVALID)    return;
     local x = cID * 3;
-    if (!GSStoryPage.IsValidStoryPage(CompanyDuuude.cPage[x+0])) {
-        CompanyDuuude.cPage[x+0] =  GSStoryPage.New(cID, GSText(GSText.STR_PAGE_TITLE));
+    if (!GSStoryPage.IsValidStoryPage(CompanyDuude.cPage[x+0])) {
+        CompanyDuude.cPage[x+0] =  GSStoryPage.New(cID, GSText(GSText.STR_PAGE_TITLE));
     }
-    // if (!GSStoryPage.IsValidStoryPage(CompanyDuuude.cPage[x+1])) {
-    //     CompanyDuuude.cPage[x+1] = GSStoryPage.New(cID, GSText(GSText.STR_PAGE_TITLE));
+    // if (!GSStoryPage.IsValidStoryPage(CompanyDuude.cPage[x+1])) {
+    //     CompanyDuude.cPage[x+1] = GSStoryPage.New(cID, GSText(GSText.STR_PAGE_TITLE));
     // }
-    // if (!GSStoryPage.IsValidStoryPage(CompanyDuuude.cPage[x+2])) {
-    //     CompanyDuuude.cPage[x+2] = GSStoryPage.New(cID, GSText(GSText.STR_PAGE_TITLE));
+    // if (!GSStoryPage.IsValidStoryPage(CompanyDuude.cPage[x+2])) {
+    //     CompanyDuude.cPage[x+2] = GSStoryPage.New(cID, GSText(GSText.STR_PAGE_TITLE));
     // }
     local logpage = " ";
-    for (local p = 0; p < 3; p++)   { logpage+="-"+CompanyDuuude.cPage[x+p]+" "; }
+    for (local p = 0; p < 3; p++)   { logpage+="-"+CompanyDuude.cPage[x+p]+" "; }
     GSLog.Info("Added company #"+cID+" "+GSCompany.GetName(cID)+" using pages "+logpage);
     if (CacheDuuude.GetData("companyDate", cID) == 0)   { CacheDuuude.SetData("companyDate", cID, GSDate.GetCurrentDate()); }
     CacheDuuude.Monitoring();
 }
 
-function CompanyDuuude::Init() {
-    if (!GSStoryPage.IsValidStoryPage(CompanyDuuude.GetPageID(15, 0))) {
-    CompanyDuuude.cPage[15 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_WELCOME_TITLE));
+function CompanyDuude::Init() {
+    if (!GSStoryPage.IsValidStoryPage(CompanyDuude.GetPageID(15, 0))) {
+    CompanyDuude.cPage[15 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_WELCOME_TITLE));
     }
-    CompanyDuuude.cPage[15 *3 + 1] = CompanyDuuude.StoryUpdate(CompanyDuuude.GetPageID(15, 0), CompanyDuuude.cPage[15 * 3 +1], GSText(GSText.STR_WELCOME_WELCOME, GSText(GSText.STR_WELCOME_AWARE), GSText(GSText.STR_WELCOME_RULES)));
-    CompanyDuuude.cPage[15 *3 + 2] = CompanyDuuude.StoryUpdate(CompanyDuuude.GetPageID(15, 0), CompanyDuuude.cPage[15 * 3 +2], GSText(GSText.STR_WELCOME_TEXT1, GSText(GSText.STR_WELCOME_TEXT2), GSText(GSText.STR_WELCOME_TEXT3)));
+    CompanyDuude.cPage[15 *3 + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(15, 0), CompanyDuude.cPage[15 * 3 +1], GSText(GSText.STR_WELCOME_WELCOME, GSText(GSText.STR_WELCOME_AWARE), GSText(GSText.STR_WELCOME_RULES)));
+    CompanyDuude.cPage[15 *3 + 2] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(15, 0), CompanyDuude.cPage[15 * 3 +2], GSText(GSText.STR_WELCOME_TEXT1, GSText(GSText.STR_WELCOME_TEXT2), GSText(GSText.STR_WELCOME_TEXT3)));
 
-    if (!GSStoryPage.IsValidStoryPage(CompanyDuuude.GetPageID(16, 0))) {
-    CompanyDuuude.cPage[16 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_RULES_TITLE));
+    if (!GSStoryPage.IsValidStoryPage(CompanyDuude.GetPageID(16, 0))) {
+    CompanyDuude.cPage[16 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_RULES_TITLE));
     }
-    CompanyDuuude.cPage[16 *3 + 1] = CompanyDuuude.StoryUpdate(CompanyDuuude.GetPageID(16, 0), CompanyDuuude.cPage[16 * 3 +1], GSText(GSText.STR_RULES_RULES, GSText(GSText.STR_RULES_STEALING), GSText(GSText.STR_RULES_TELEPORT)));
-    CompanyDuuude.cPage[16 *3 + 2] = CompanyDuuude.StoryUpdate(CompanyDuuude.GetPageID(16, 0), CompanyDuuude.cPage[16 * 3 +2], GSText(GSText.STR_RULES_GRIDS, GSText(GSText.STR_RULES_CENTRAL), GSText(GSText.STR_RULES_FORBIDS)));
+    CompanyDuude.cPage[16 *3 + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(16, 0), CompanyDuude.cPage[16 * 3 +1], GSText(GSText.STR_RULES_RULES, GSText(GSText.STR_RULES_STEALING), GSText(GSText.STR_RULES_TELEPORT)));
+    CompanyDuude.cPage[16 *3 + 2] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(16, 0), CompanyDuude.cPage[16 * 3 +2], GSText(GSText.STR_RULES_GRIDS, GSText(GSText.STR_RULES_CENTRAL), GSText(GSText.STR_RULES_FORBIDS)));
 
-    if (!GSStoryPage.IsValidStoryPage(CompanyDuuude.GetPageID(17, 0))) {
-        CompanyDuuude.cPage[17 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_SETTINGS_TITLE));
+    if (!GSStoryPage.IsValidStoryPage(CompanyDuude.GetPageID(17, 0))) {
+        CompanyDuude.cPage[17 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_SETTINGS_TITLE));
     }
-    CompanyDuuude.cPage[17 *3 + 1] = CompanyDuuude.StoryUpdate(CompanyDuuude.GetPageID(17, 0), CompanyDuuude.cPage[17 * 3 +1], GSText(GSText.STR_SETTINGS_SET1, GSText(GSText.STR_SETTINGS_SET2), GSText(GSText.STR_SETTINGS_SET3)));
-    CompanyDuuude.cPage[17 *3 + 2] = CompanyDuuude.StoryUpdate(CompanyDuuude.GetPageID(17, 0), CompanyDuuude.cPage[17 * 3 +2], GSText(GSText.STR_SETTINGS_SET4, GSText(GSText.STR_SETTINGS_SET5), GSText(GSText.STR_SETTINGS_SET6)));
+    CompanyDuude.cPage[17 *3 + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(17, 0), CompanyDuude.cPage[17 * 3 +1], GSText(GSText.STR_SETTINGS_SET1, GSText(GSText.STR_SETTINGS_SET2), GSText(GSText.STR_SETTINGS_SET3)));
+    CompanyDuude.cPage[17 *3 + 2] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(17, 0), CompanyDuude.cPage[17 * 3 +2], GSText(GSText.STR_SETTINGS_SET4, GSText(GSText.STR_SETTINGS_SET5), GSText(GSText.STR_SETTINGS_SET6)));
 
-    if (!GSStoryPage.IsValidStoryPage(CompanyDuuude.GetPageID(18, 0))) {
-        CompanyDuuude.cPage[18 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_STUFF_TITLE));
+    if (!GSStoryPage.IsValidStoryPage(CompanyDuude.GetPageID(18, 0))) {
+        CompanyDuude.cPage[18 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_STUFF_TITLE));
     }
-    CompanyDuuude.cPage[18 *3 + 1] = CompanyDuuude.StoryUpdate(CompanyDuuude.GetPageID(18, 0), CompanyDuuude.cPage[18 * 3 +1], GSText(GSText.STR_STUFF_SET1, GSText(GSText.STR_STUFF_SET2), GSText(GSText.STR_STUFF_SET3)));
-    CompanyDuuude.cPage[18 *3 + 2] = CompanyDuuude.StoryUpdate(CompanyDuuude.GetPageID(18, 0), CompanyDuuude.cPage[18 * 3 +2], GSText(GSText.STR_STUFF_SET4, GSText(GSText.STR_STUFF_SET5), GSText(GSText.STR_STUFF_SET6)));
+    CompanyDuude.cPage[18 *3 + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(18, 0), CompanyDuude.cPage[18 * 3 +1], GSText(GSText.STR_STUFF_SET1, GSText(GSText.STR_STUFF_SET2), GSText(GSText.STR_STUFF_SET3)));
+    CompanyDuude.cPage[18 *3 + 2] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(18, 0), CompanyDuude.cPage[18 * 3 +2], GSText(GSText.STR_STUFF_SET4, GSText(GSText.STR_STUFF_SET5), GSText(GSText.STR_STUFF_SET6)));
 
-    if (!GSStoryPage.IsValidStoryPage(CompanyDuuude.GetPageID(19, 0))) {
-        CompanyDuuude.cPage[19 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_LINKS_TITLE));
+    if (!GSStoryPage.IsValidStoryPage(CompanyDuude.GetPageID(19, 0))) {
+        CompanyDuude.cPage[19 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_LINKS_TITLE));
     }
-    CompanyDuuude.cPage[19 *3 + 1] = CompanyDuuude.StoryUpdate(CompanyDuuude.GetPageID(19, 0), CompanyDuuude.cPage[19 * 3 +1], GSText(GSText.STR_LINK_PRE));
-    CompanyDuuude.cPage[19 *3 + 2] = CompanyDuuude.StoryUpdate(CompanyDuuude.GetPageID(19, 0), CompanyDuuude.cPage[19 * 3 +2], GSText(GSText.STR_LINK_TELEGRAM, GSText(GSText.STR_LINK_DISCORD), GSText(GSText.STR_LINK_WEB)));
+    CompanyDuude.cPage[19 *3 + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(19, 0), CompanyDuude.cPage[19 * 3 +1], GSText(GSText.STR_LINK_PRE));
+    CompanyDuude.cPage[19 *3 + 2] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(19, 0), CompanyDuude.cPage[19 * 3 +2], GSText(GSText.STR_LINK_TELEGRAM, GSText(GSText.STR_LINK_DISCORD), GSText(GSText.STR_LINK_WEB)));
 
-    CompanyDuuude.StoryUpgrade();
+    CompanyDuude.StoryUpgrade();
 }
 
-function CompanyDuuude::StoryUpdate(pID, eID, txt, type = GSStoryPage.SPET_TEXT, ref = 0) {
+function CompanyDuude::StoryUpdate(pID, eID, txt, type = GSStoryPage.SPET_TEXT, ref = 0) {
     if (!GSStoryPage.IsValidStoryPageElement(eID)) {
         eID = GSStoryPage.NewElement(pID, type, 0, "TEXT");
         if (eID == GSStoryPage.STORY_PAGE_ELEMENT_INVALID)  { return -1; }
@@ -83,11 +83,11 @@ function CompanyDuuude::StoryUpdate(pID, eID, txt, type = GSStoryPage.SPET_TEXT,
     return eID;
 }
 
-function CompanyDuuude::StoryUpgrade() {
+function CompanyDuude::StoryUpgrade() {
 	local rank = GSList();
 	for (local i = 0; i < 15; i++)
 		{
-		rank.AddItem(i, CompanyDuuude.cPoints[i]);
+		rank.AddItem(i, CompanyDuude.cPoints[i]);
 		}
 	rank.Sort(GSList.SORT_BY_VALUE, GSList.SORT_DESCENDING);
 	local counter = 0;
@@ -97,12 +97,12 @@ function CompanyDuuude::StoryUpgrade() {
 	foreach (comp, top in rank) {
 		if (GSCompany.ResolveCompanyID(comp) == GSCompany.COMPANY_INVALID) {
 			points = -1;
-			CompanyDuuude.cPoints[comp] = -1;
+			CompanyDuude.cPoints[comp] = -1;
 		} else {
 			if (top == -1) {
 				points = 0;
-				CompanyDuuude.cPoints[comp] = 0;
-				CompanyDuuude.NewCompany(comp);
+				CompanyDuude.cPoints[comp] = 0;
+				CompanyDuude.NewCompany(comp);
 		} else  { points = top; }
 		}
     if (points != draw && points != -1)	{ counter++; draw = points; }
@@ -131,6 +131,6 @@ function CompanyDuuude::StoryUpgrade() {
     result.push(res);
 	}
 	for (local i = 0; i < result.len(); i++) {
-		GSStoryPage.UpdateElement(CompanyDuuude.gElement[i], 0, result[i]);
+		GSStoryPage.UpdateElement(CompanyDuude.gElement[i], 0, result[i]);
 		}
 } 

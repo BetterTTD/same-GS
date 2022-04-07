@@ -16,17 +16,17 @@ function TeamDuude::Start() {
 }
 
 function TeamDuude::Init() {
-	for (local i = 0; i < 15; i++)	{ CacheDuuude.cargo_handle.AddItem(i, 0);	CacheDuuude.vehicle[i] = GSList(); }
-	CacheDuuude.FindCargoUsage();
-	local caching = CompanyDuuude();
-	caching = CacheDuuude("companyDate", 0);
-	caching = CacheDuuude("supply_town", 0);
-	caching = CacheDuuude("supply_industry", 0);
-	caching = CacheDuuude("reward", 0);
-	caching = CacheDuuude("reward_balance", 0);
-	caching = CacheDuuude("gabriel", 0);
-	CompanyDuuude.Init();
-	GSLog.Info("Welcome use page "+CompanyDuuude.GetPageID(15,0));
+	for (local i = 0; i < 15; i++)	{ CacheDuude.cargo_handle.AddItem(i, 0);	CacheDuude.vehicle[i] = GSList(); }
+	CacheDuude.FindCargoUsage();
+	local caching = CompanyDuude();
+	caching = CacheDuude("companyDate", 0);
+	caching = CacheDuude("supply_town", 0);
+	caching = CacheDuude("supply_industry", 0);
+	caching = CacheDuude("reward", 0);
+	caching = CacheDuude("reward_balance", 0);
+	caching = CacheDuude("gabriel", 0);
+	CompanyDuude.Init();
+	GSLog.Info("Welcome use page "+CompanyDuude.GetPageID(15,0));
 	local wait = 0 * 30 * 74
 	wait = true;
 	while(wait)
@@ -36,7 +36,7 @@ function TeamDuude::Init() {
 				break;
 			}
 		}
-	GSStoryPage.Show(CompanyDuuude.GetPageID(15,0));
+	GSStoryPage.Show(CompanyDuude.GetPageID(15,0));
 }
 
 function TeamDuude::HandleEvents() {
@@ -49,8 +49,8 @@ function TeamDuude::HandleEvents() {
 					local e = GSEventCompanyNew.Convert(event);
 					local c = e.GetCompanyID();
 					GSLog.Warning("New company incoming " + GSCompany.GetName(c));
-					CompanyDuuude.NewCompany(c);
-					GSStoryPage.Show(CompanyDuuude.GetPageID(c, 0));
+					CompanyDuude.NewCompany(c);
+					GSStoryPage.Show(CompanyDuude.GetPageID(c, 0));
 					break;
 			}
 

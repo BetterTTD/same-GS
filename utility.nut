@@ -1,4 +1,4 @@
-class CacheDuuude {
+class CacheDuude {
     static cargo = GSList();
     static vehicle = array(17, -1);
     static snowtown = GSList();
@@ -13,16 +13,16 @@ class CacheDuuude {
     	index = null;
             constructor(strid, defvalue = 0) {
                 this.id = strid;
-                if (this.id in CacheDuuude.indexer)	{ GSLog.Info(strid+" is already index"); return; }
-                this.index = CacheDuuude.bigarray.len();
-                for (local i = 0; i < 15; i++)	{ CacheDuuude.bigarray.push(defvalue); }
+                if (this.id in CacheDuude.indexer)	{ GSLog.Info(strid+" is already index"); return; }
+                this.index = CacheDuude.bigarray.len();
+                for (local i = 0; i < 15; i++)	{ CacheDuude.bigarray.push(defvalue); }
                 GSLog.Info("New entry "+this.id+" at index "+this.index);
-                CacheDuuude.indexer[this.id] <- this;
+                CacheDuude.indexer[this.id] <- this;
             }
             function Resolver();
 }
 
-function CacheDuuude::Resolver() {
+function CacheDuude::Resolver() {
     local comp = [];
     for (local r = 0; r < 15; r++) {
         local rc = GSCompany.ResolveCompanyID(r);
@@ -31,10 +31,10 @@ function CacheDuuude::Resolver() {
     return comp;
 }
 
-function CacheDuuude::Vehicle_Helper_Counter(v_str)
+function CacheDuude::Vehicle_Helper_Counter(v_str)
 {
-	local vlist = CacheDuuude.Vehicle_Helper();
-	local company = CacheDuuude.Company_Helper();
+	local vlist = CacheDuude.Vehicle_Helper();
+	local company = CacheDuude.Company_Helper();
 	local retvalue = GSList();
 	for (local j = 0; j < 15; j++)	{ retvalue.AddItem(j, 0); }
 	local v_type = null;
@@ -52,7 +52,7 @@ function CacheDuuude::Vehicle_Helper_Counter(v_str)
 				if (v_str == "bus" || v_str == "truck")
 						{
 						tl.KeepValue(GSVehicle.VT_ROAD);
-						local pass = CacheDuuude.GetPassengerCargo();
+						local pass = CacheDuude.GetPassengerCargo();
 						local filter = GSList();
 						foreach (veh, _ in tl)
 							{
@@ -87,20 +87,20 @@ function CacheDuuude::Vehicle_Helper_Counter(v_str)
 	return retvalue;
 }
 
-function CacheDuuude::GetPassengerCargo() {
-	if (!CacheDuuude.cargo.IsEmpty())	{ return CacheDuuude.cargo; }
+function CacheDuude::GetPassengerCargo() {
+	if (!CacheDuude.cargo.IsEmpty())	{ return CacheDuude.cargo; }
 	local cargolist = GSCargoList();
 	foreach (cargo, dummy in cargolist)
 			{
-			if (GSCargo.GetTownEffect(cargo) == GSCargo.TE_PASSENGERS) { CacheDuuude.cargo.AddItem(cargo, 0); }
+			if (GSCargo.GetTownEffect(cargo) == GSCargo.TE_PASSENGERS) { CacheDuude.cargo.AddItem(cargo, 0); }
 			}
-	return CacheDuuude.cargo;
+	return CacheDuude.cargo;
 }
 
-function CacheDuuude::GetSnowTown(addnew = false) {
-	if (!CacheDuuude.snowtown.IsEmpty() && !addnew)	{ return CacheDuuude.snowtown; }
+function CacheDuude::GetSnowTown(addnew = false) {
+	if (!CacheDuude.snowtown.IsEmpty() && !addnew)	{ return CacheDuude.snowtown; }
 	local town_list = GSTownList();
-	town_list.RemoveList(CacheDuuude.snowtown);
+	town_list.RemoveList(CacheDuude.snowtown);
 	local terrain = GSTileList();
 	foreach (town, _ in town_list)
 		{
@@ -110,19 +110,19 @@ function CacheDuuude::GetSnowTown(addnew = false) {
 		terrain.Valuate(GSTile.GetTerrainType);
 		terrain.KeepValue(GSTile.TERRAIN_SNOW);
 		if (!terrain.IsEmpty())	{
-								CacheDuuude.snowtown.AddItem(town, 0);
+								CacheDuude.snowtown.AddItem(town, 0);
 								}
 		}
-	return CacheDuuude.snowtown;
+	return CacheDuude.snowtown;
 }
 
-function CacheDuuude::GetPowerPlant(addnew = false)
+function CacheDuude::GetPowerPlant(addnew = false)
 {
-	if (!CacheDuuude.powerplant.IsEmpty() && !addnew && CacheDuuude.powerplant.GetValue(0) != -1)	{ return CacheDuuude.powerplant; }
+	if (!CacheDuude.powerplant.IsEmpty() && !addnew && CacheDuude.powerplant.GetValue(0) != -1)	{ return CacheDuude.powerplant; }
 	local cargolabel = ["COAL"];
 	local cargo_list = GSCargoList();
 	local energy_list = GSList();
-	if (CacheDuuude.powerplant.HasItem(0))	{ CacheDuuude.powerplant.RemoveItem(0); }
+	if (CacheDuude.powerplant.HasItem(0))	{ CacheDuude.powerplant.RemoveItem(0); }
 	foreach (cargoid, _ in cargo_list)
 		{
 		local t_list = GSList();
@@ -131,15 +131,15 @@ function CacheDuuude::GetPowerPlant(addnew = false)
 			t_list = GSIndustryList_CargoAccepting(cargoid);
 			foreach (indID, _ in t_list)
 				{
-				CacheDuuude.powerplant.AddItem(indID, cargoid);
+				CacheDuude.powerplant.AddItem(indID, cargoid);
 				}
 			}
 		}
-	if (CacheDuuude.powerplant.IsEmpty())	{ CacheDuuude.powerplant.AddItem(0, -1); }
-	return CacheDuuude.powerplant;
+	if (CacheDuude.powerplant.IsEmpty())	{ CacheDuude.powerplant.AddItem(0, -1); }
+	return CacheDuude.powerplant;
 }
 
-function CacheDuuude::GetCompetitorStationAround(IndustryID)
+function CacheDuude::GetCompetitorStationAround(IndustryID)
 {
 	local comp_list = GSList();
 	local counter=0;
@@ -160,9 +160,9 @@ function CacheDuuude::GetCompetitorStationAround(IndustryID)
 	return comp_list;
 }
 
-function CacheDuuude::Infrastructure_helper(inftype)
+function CacheDuude::Infrastructure_helper(inftype)
 {
-	local comp_list = CacheDuuude.Company_Helper();
+	local comp_list = CacheDuude.Company_Helper();
 	local ret = GSList();
 	foreach (comp in comp_list)
 		{
@@ -172,101 +172,101 @@ function CacheDuuude::Infrastructure_helper(inftype)
 	return ret;
 }
 
-function CacheDuuude::FindCargoUsage()
+function CacheDuude::FindCargoUsage()
 {
-	if (!CacheDuuude.cargo_town.IsEmpty())	{ return; }
+	if (!CacheDuude.cargo_town.IsEmpty())	{ return; }
 	local indtype_list = GSIndustryTypeList();
 	foreach (item, value in indtype_list)
 		{
         local cargolist = GSIndustryType.GetAcceptedCargo(item);
 		foreach (cargo, _ in cargolist)
 			{
-			if (!CacheDuuude.cargo_industry.HasItem(cargo))	{ CacheDuuude.cargo_industry.AddItem(cargo, item); }
+			if (!CacheDuude.cargo_industry.HasItem(cargo))	{ CacheDuude.cargo_industry.AddItem(cargo, item); }
 			}
 		}
 	local cargo_list = GSCargoList();
-	CacheDuuude.cargo_town.AddList(cargo_list);
+	CacheDuude.cargo_town.AddList(cargo_list);
 	foreach (cargo, _ in cargo_list)
 		{
-		if (GSCargo.GetTownEffect(cargo) == GSCargo.TE_NONE)	{ CacheDuuude.cargo_town.RemoveItem(cargo); }
+		if (GSCargo.GetTownEffect(cargo) == GSCargo.TE_NONE)	{ CacheDuude.cargo_town.RemoveItem(cargo); }
 		local label = GSCargo.GetCargoLabel(cargo);
-		if (Utils.INArray(label, CacheDuuude.cargo_tracker) != -1)	{ local entry = CacheDuuude(label, 0); }
+		if (Utils.INArray(label, CacheDuude.cargo_tracker) != -1)	{ local entry = CacheDuude(label, 0); }
 		}
 	local o_str = [];
-	foreach (cargo, _ in CacheDuuude.cargo_town)	{ o_str.push(GSCargo.GetCargoLabel(cargo)); }
-    //	GSLog.Info("Towns accept cargo : "+Utils.ArrayListToString(CacheDuuude.cargo_town));
+	foreach (cargo, _ in CacheDuude.cargo_town)	{ o_str.push(GSCargo.GetCargoLabel(cargo)); }
+    //	GSLog.Info("Towns accept cargo : "+Utils.ArrayListToString(CacheDuude.cargo_town));
     GSLog.Info("Towns accept cargo : "+Utils.ArrayListToString(o_str));
-	//GSLog.Info("Industries accept cargo : "+Utils.ArrayListToString(CacheDuuude.cargo_industry));
+	//GSLog.Info("Industries accept cargo : "+Utils.ArrayListToString(CacheDuude.cargo_industry));
 	o_str = [];
-	foreach (cargo, _ in CacheDuuude.cargo_industry)	{ o_str.push(GSCargo.GetCargoLabel(cargo)); }
+	foreach (cargo, _ in CacheDuude.cargo_industry)	{ o_str.push(GSCargo.GetCargoLabel(cargo)); }
 	GSLog.Info("Industries accept cargo : "+Utils.ArrayListToString(o_str));
 }
 
-function CacheDuuude::Monitoring()
+function CacheDuude::Monitoring()
 {
-	local companies = CacheDuuude.Company_Helper();
+	local companies = CacheDuude.Company_Helper();
 	local town_list = GSTownList();
 	foreach (company in companies) // Insane loops !
 		{
-		local stown = CacheDuuude.GetData("supply_town", company);
+		local stown = CacheDuude.GetData("supply_town", company);
 		if (stown < 1000000)
 			{
 			foreach (town, _ in town_list)
 				{
 				if (GSTown.GetRating(town, company) != 0)
 					{
-					foreach (cargo, _ in CacheDuuude.cargo_town)
+					foreach (cargo, _ in CacheDuude.cargo_town)
 						{
 						local z = GSCargoMonitor.GetTownDeliveryAmount(company, cargo, town, true);
 						if (z > 0)	{
-									local k = CacheDuuude.cargo_handle.GetValue(company);
+									local k = CacheDuude.cargo_handle.GetValue(company);
 									k = (k | (1 << cargo));
-									CacheDuuude.cargo_handle.SetValue(company, k);
+									CacheDuude.cargo_handle.SetValue(company, k);
 									}
 						if (GSCargo.GetCargoLabel(cargo) == "GOOD") // special monitoring of good
 							{
-							local h = CacheDuuude.GetData("GOOD", company);
+							local h = CacheDuude.GetData("GOOD", company);
 							h += z;
-							CacheDuuude.SetData("GOOD", company, h);
+							CacheDuude.SetData("GOOD", company, h);
 							}
 						stown += z;
 						if (stown > 1000000)	{ GSCargoMonitor.GetTownDeliveryAmount(company, cargo, town, false); }
-						CacheDuuude.SetData("supply_town", company, stown);
+						CacheDuude.SetData("supply_town", company, stown);
 						}
 					}
 				}
 			}
-		local sind = CacheDuuude.GetData("supply_industry", company);
+		local sind = CacheDuude.GetData("supply_industry", company);
 		if (sind < 1000000)
 			{
-			foreach (cargo, _ in CacheDuuude.cargo_industry)
+			foreach (cargo, _ in CacheDuude.cargo_industry)
 				{
 				local ind_list = GSIndustryList_CargoAccepting(cargo);
 				foreach (industry, iii in ind_list)
 					{
 					local z = GSCargoMonitor.GetIndustryDeliveryAmount(company, cargo, industry, true);
 					if (z > 0)	{
-								local k = CacheDuuude.cargo_handle.GetValue(company);
+								local k = CacheDuude.cargo_handle.GetValue(company);
 								k = (k | (1 << cargo));
-								CacheDuuude.cargo_handle.SetValue(company, k);
+								CacheDuude.cargo_handle.SetValue(company, k);
 								}
 					local hh = GSCargo.GetCargoLabel(cargo);
-					if (Utils.INArray(hh, CacheDuuude.cargo_tracker) != -1)  // special monitoring of specific cargos
+					if (Utils.INArray(hh, CacheDuude.cargo_tracker) != -1)  // special monitoring of specific cargos
 						{
-						local h = CacheDuuude.GetData(hh, company);
+						local h = CacheDuude.GetData(hh, company);
 						h += z;
-						CacheDuuude.SetData(hh, company, h);
+						CacheDuude.SetData(hh, company, h);
 						}
 					sind += z;
 					if (sind > 1000000)	{ GSCargoMonitor.GetIndustryDeliveryAmount(company, cargo, industry, false); }
-					CacheDuuude.SetData("supply_industry", company, sind);
+					CacheDuude.SetData("supply_industry", company, sind);
 					}
 				}
 			}
 		}
 }
 
-function CacheDuuude::DeliveryAwardGeneric(number, comp)
+function CacheDuude::DeliveryAwardGeneric(number, comp)
 {
 	if (Awards.HaveAward(number, comp))	{ return; }
 	local awd = Awards.Get(number);
@@ -277,39 +277,39 @@ function CacheDuuude::DeliveryAwardGeneric(number, comp)
 	Awards.GrantAward(number, everyone);
 }
 
-function CacheDuuude::SetData(strID, companyID, data)
+function CacheDuude::SetData(strID, companyID, data)
 {
-	if (!(strID in CacheDuuude.indexer))	{ return -1; }
-	local goal = CacheDuuude.indexer[strID];
-	CacheDuuude.bigarray[goal.index + companyID] = data;
+	if (!(strID in CacheDuude.indexer))	{ return -1; }
+	local goal = CacheDuude.indexer[strID];
+	CacheDuude.bigarray[goal.index + companyID] = data;
 }
 
-function CacheDuuude::GetData(strID, companyID)
+function CacheDuude::GetData(strID, companyID)
 {
-	if (!(strID in CacheDuuude.indexer))	{ return -1; }
-	local goal = CacheDuuude.indexer[strID];
-	return (CacheDuuude.bigarray[goal.index + companyID]);
+	if (!(strID in CacheDuude.indexer))	{ return -1; }
+	local goal = CacheDuude.indexer[strID];
+	return (CacheDuude.bigarray[goal.index + companyID]);
 }
 
-function CacheDuuude::GetIndex(strID)
+function CacheDuude::GetIndex(strID)
 {
-	if (!(strID in CacheDuuude.indexer))	{ return -1; }
-	local goal = CacheDuuude.indexer[strID];
+	if (!(strID in CacheDuude.indexer))	{ return -1; }
+	local goal = CacheDuude.indexer[strID];
 	return goal.index;
 }
 
-function CacheDuuude::CalcCompanyValue(companyID)
+function CacheDuude::CalcCompanyValue(companyID)
 {
 	local cmode = GSCompanyMode(companyID);
 	local value = GSCompany.GetBankBalance(companyID);
 	value -= GSCompany.GetLoanAmount();
-	local vlist = CacheDuuude.Vehicle_Helper();
+	local vlist = CacheDuude.Vehicle_Helper();
 	vlist[companyID].Valuate(GSVehicle.GetCurrentValue);
 	foreach (veh, price in vlist[companyID])	{ value += price; }
 	return value;
 }
 
-function CacheDuuude::Company_Helper()
+function CacheDuude::Company_Helper()
 {
 	local company = [];
 	for (local j = 0; j < 15; j++)
@@ -320,23 +320,23 @@ function CacheDuuude::Company_Helper()
 	return company;
 }
 
-function CacheDuuude::Vehicle_Helper()
+function CacheDuude::Vehicle_Helper()
 {
-	local d = CacheDuuude.vehicle[16];
+	local d = CacheDuude.vehicle[16];
 	local now = GSDate.GetCurrentDate();
-	if ((now - d) < 10)	{ return CacheDuuude.vehicle; }
+	if ((now - d) < 10)	{ return CacheDuude.vehicle; }
 	local vlist = GSVehicleList();
 	vlist.Valuate(GSVehicle.GetOwner);
-	CacheDuuude.vehicle[15].Clear();
-	CacheDuuude.vehicle[15].AddList(vlist);
+	CacheDuude.vehicle[15].Clear();
+	CacheDuude.vehicle[15].AddList(vlist);
 	for (local i = 0; i < 15; i++)
 		{
-		CacheDuuude.vehicle[i].Clear();
-		CacheDuuude.vehicle[i].AddList(vlist);
-		CacheDuuude.vehicle[i].KeepValue(i);
+		CacheDuude.vehicle[i].Clear();
+		CacheDuude.vehicle[i].AddList(vlist);
+		CacheDuude.vehicle[i].KeepValue(i);
 		}
-	CacheDuuude.vehicle[16] = GSDate.GetCurrentDate();
-	return CacheDuuude.vehicle;
+	CacheDuude.vehicle[16] = GSDate.GetCurrentDate();
+	return CacheDuude.vehicle;
 }
 
 class Utils
