@@ -3,6 +3,7 @@ STR_RULES_TITLE         : Server::Rules
 STR_SETTINGS_TITLE      : Server::Settings
 STR_STUFF_TITLE         : Administration::Stuff
 STR_LINKS_TITLE         : Links::TeamGame_OpenTTD
+STR_GOALS_TITLE         : Goals::ForYou
 STR_COMPANY_TITLE       : {COMPANY}::Statistics
 STR_COMPANY_VALUE       : {COMPANY} 
 STR_PAGE_TITLE          : PAGE_TITLE_PLACEHOLDER
@@ -12,10 +13,13 @@ STR_SERVER_DEFAULT      : ''This server''
 STR_SERVER_VANILLA      : ''TG Vanilla server''
 STR_SERVER_WELCOME      : ''TG Welcome server''
 STR_SERVER_PUBLIC       : ''TG Public server''
+STR_DEFAULT_AWARE       : {YELLOW}{} ------------------------{ORANGE}Important:{YELLOW}------------------------ {}-- PLACEHOLDER. --{} --------------------------------------------------------- 
+STR_VANILLA_AWARE       : {YELLOW}{} ------------------------{ORANGE}Important:{YELLOW}------------------------ {}-- Company will be removed in {RED} 4 hours {YELLOW} after last player leave it. --{} --------------------------------------------------------- 
+STR_WELCOME_AWARE       : {YELLOW}{} ------------------------{ORANGE}Important:{YELLOW}------------------------ {}-- Dont forget to set PASSWORD on your company, for prevent reset. --{} --------------------------------------------------------- 
+STR_PUBLIC_AWARE        : {YELLOW}{} ------------------------{ORANGE}Important:{YELLOW}------------------------ {}-- PLACEHOLDER. --{} --------------------------------------------------------- 
 STR_WELCOME_TEXT1       : {BLACK}-{ORANGE} TeamGame_OpenTTD  - {BLACK} is an open community where everyone is welcome to join in and play. {}{}{LTBLUE}{CHECKMARK}{BLACK} This does mean that we expect decent behaviour from the players to keep it fun for everyone and to stop things from getting out of hand. {} We are community that promotes the coop style of playing games. Instead of competing with each other, we group together and work towards one goal with our combined efforts. {}{}{}{STRING}{}{}{}{STRING}
 STR_WELCOME_TEXT2       : {LTBLUE}{CHECKMARK}{BLACK} Be friendly. This seems like an obvious one, but in practice turns out not to be. If you are in a grumpy mood, don’t make us grumpy by sharing it. Not only does the “being nice” cause a better atmosphere, it also gets you more help from others.
 STR_WELCOME_TEXT3       : {BLACK}-{YELLOW} Servers: {BLACK} Our community consists of three main servers. {}{}{BLACK}{RIGHT_ARROW}{ORANGE} TG Vanilla server {}{BLACK}{RIGHT_ARROW}{ORANGE} TG Welcome server {}{BLACK}{RIGHT_ARROW}{ORANGE} TG Public server {}
-STR_WELCOME_AWARE       : {YELLOW}{} ------------------------{ORANGE}Important:{YELLOW}------------------------ {}-- Company will be removed in {RED} 4 hours {YELLOW} after last player leave it. --{} --------------------------------------------------------- 
 STR_WELCOME_RULES       : {BLACK}-{YELLOW} Please! {BLACK} Keep in mind that there are rules on this server.{}
 
 STR_RULES_RULES         : {BLACK}-{YELLOW} Rules is simple:{}{}{}{STRING}{}{}{}{STRING}
@@ -47,6 +51,14 @@ STR_LINK_TELEGRAM       : {BLACK}- {WHITE}https://t.me/TG_OpenTTD{}{}{}{STRING}
 STR_LINK_DISCORD        : {BLACK}- {WHITE}https://discord.gg/qXBPgCpsnT{}{}{}{STRING}
 STR_LINK_WEB            : {BLACK}- {WHITE}https://tg-ottd.org{}
 
+STR_GOALS_PRE           : "STR_GOALS_PRE"
+STR_GOALS_FIRST         : "STR_GOALS_FIRST"
+
+STR_QUESTION_RULES1     : {WHITE}Hi, stranger. {}{} We are glad that you have choosen our server for the game, but first of all we want to make sure that you are aware of our {YELLOW} Rules {WHITE}. {}{} You can find the rules in the ''StoryBook tab''. Please read them, they are quite simple and short. {}{} Keep in mind that by clicking the button below - you agree to our rules and undertake to comply with them.
+STR_QUESTION_RULES2     : {YELLOW} The company {LTBLUE}{COMPANY} {YELLOW} has {RED} not yet {ORANGE} ACCEPTED {YELLOW} our rules.
+STR_ACCEPTED_RULES      : {YELLOW} The company {LTBLUE}{COMPANY} {YELLOW} read our rules and  {GREEN} ACCEPTED {YELLOW} the condition to comply with them. Congratz!!!
+STR_DECLINED_RULES      : {YELLOW} The company {LTBLUE}{COMPANY} {YELLOW} read our rules and  {RED} DECLINED {YELLOW} the condition to comply with them. sad......
+
 STR_DUR_GAME            : {LTBLUE} {NUM} {YELLOW}] {BLACK} about [{BLACK} {NUM} {BLACK}] {BLACK}years {}{}{}{STRING}
 STR_DUR_2GAME           : {LTBLUE}Right time {RED}* {YELLOW}] {}{}{RED}*{BLACK} Server restarts when is the right time to do it (when map is full or people get bored). Questions when exactly that happens are considered {RED} EVIL {BLACK} !!! {}{}{}{STRING}
 STR_RED                 : {RED}{STRING}
@@ -54,3 +66,5 @@ STR_ORANGE              : {ORANGE}{STRING}
 STR_YELLOW              : {YELLOW}{STRING}
 STR_GREEN               : {GREEN}{STRING}
 STR_RANK                : {NUM} - {COMPANY} with {NUM} points
+STR_RANK_COMPANY        : {BLACK}Hi, {LTBLUE}{COMPANY}{}{}{BLACK} We are glad that you have choosen our server for the game, but first of all we want to make sure that you are aware of our {YELLOW} Rules {BLACK}. {}{}Please read them, they are quite simple and short.{}{}{STRING}
+STR_RANK_COMPANY2       : {BLACK} Your company has {RED} not yet {ORANGE} ACCEPTED {BLACK} our rules.

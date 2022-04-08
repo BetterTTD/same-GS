@@ -3,10 +3,12 @@ class CompanyDuude {
     static gElement = [];
     static cPoints = [];
     static cValue = [];
+    static cGoal = [];
     constructor() { 
         for ( local i = 0; i < 21*3; i++ )  { cPage.push(-1); } 
         for ( local i = 0; i < 15; i++ )    { cValue.push(null); cPoints.push(-1); } 
         for ( local i = 0; i < 64; i++ )    { gElement.push(-1); } 
+        for ( local i = 0; i < 15; i++ )  	{ cGoal.push(-1); } 
     }
     function GetPageID();
     function NewCompany();
@@ -44,14 +46,16 @@ function CompanyDuude::GetPageID(cID, opt) {
 
 function CompanyDuude::RemoveCompany(cID) {
 	if (cID == -1)	{ return; }
-	local idx = cID * 3;
+	local x = cID * 3;
 	for (local z = 0; z < 3; z++)	{
-									local h = CompanyDuude.GetPageID(cID, z);
-									GSStoryPage.Remove(h);
-									CompanyDuude.cPage[idx + z] = -1;
+									local p = CompanyDuude.GetPageID(cID, z);
+									GSStoryPage.Remove(p);
+									CompanyDuude.cPage[x + z] = -1;
 									}
 	CompanyDuude.cValue[cID] = null;
 	CompanyDuude.cPoints[cID] = -1;
+	GSGoal.Remove(cID);
+	CompanyDuude.cGoal[cID] = null;
 	CacheDuude.SetData("companyDate", cID, 0);
 	GSLog.Info("Removing company #"+cID);
 	local cargo_list = GSCargoList();
@@ -76,12 +80,28 @@ function CompanyDuude::ValueReset(company) {
 }
 
 function CompanyDuude::NewCompany(cID) {
-    if (GSCompany.ResolveCompanyID == GSCompany.COMPANY_INVALID)    return;
+    if (GSCompany.ResolveCompanyID(cID) == GSCompany.COMPANY_INVALID)    return;
     local x = cID * 3;
     if (!GSStoryPage.IsValidStoryPage(CompanyDuude.cPage[x+0])) {
         CompanyDuude.cPage[x+0] =  GSStoryPage.New(cID, GSText(GSText.STR_COMPANY_TITLE, cID));
     }
-    CompanyDuude.cPage[x + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(cID, 0), CompanyDuude.cPage[x +1], " ");
+    local rnk = GSText(GSText.STR_RANK_COMPANY, GSCompany.ResolveCompanyID(cID)); //GSText(GSText.STR_RANK_COMPANY2));
+	CompanyDuude.cPage[x + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(cID, 0), CompanyDuude.cPage[x +1], rnk);
+			
+	// 		local pID = CompanyDuude.GetPageID(cID, 0);
+	// 		local eID = -1;
+	// 		local txt = "blablabla";
+	// 		local type = GSStoryPage.SPET_BUTTON_PUSH;
+	// 		local ref = GSStoryPage.MakePushButtonReference(GSStoryPage.SPBC_LIGHT_BLUE, GSStoryPage.SPBF_NONE);			
+	// 		if (GSStoryPage.IsValidStoryPageElement(eID)) {
+    //     		eID = GSStoryPage.NewElement(pID, type, ref, txt);
+    //     		if (eID == GSStoryPage.STORY_PAGE_ELEMENT_INVALID)  { return -1; }
+    // 		}
+    // CompanyDuude.cPage[x + 2] = GSStoryPage.UpdateElement(eID, ref, txt);
+    
+	// if (GSGame.IsMultiplayer()) {
+	// 	GSGoal.Question(1, GSCompany.ResolveCompanyID(cID), "Hi. Do u read our rules of server?", GSGoal.QT_QUESTION, GSGoal.BUTTON_ACCEPT);
+	// }
     // CompanyDuude.cPage[x + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(cID, 1), -1, " ");
     // if (!GSStoryPage.IsValidStoryPage(CompanyDuude.cPage[x+1])) {
     //     CompanyDuude.cPage[x+1] = GSStoryPage.New(cID, GSText(GSText.STR_PAGE_TITLE));
@@ -98,26 +118,36 @@ function CompanyDuude::NewCompany(cID) {
     // CompanyDuude.StoryUpgrade();
 }
 
+function CompanyDuude::Question(cID) {
+	if (!GSGoal.IsValidGoal(GSCompany.ResolveCompanyID(cID))) {
+		CompanyDuude.cGoal[cID] = GSGoal.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_QUESTION_RULES2, cID), GSGoal.GT_COMPANY, GSCompany.ResolveCompanyID(cID));
+		if (GSGame.IsMultiplayer()) {
+			local answer = GSGoal.Question(cID, GSCompany.ResolveCompanyID(cID), GSText(GSText.STR_QUESTION_RULES1), GSGoal.QT_INFORMATION, GSGoal.BUTTON_ACCEPT+GSGoal.BUTTON_DECLINE);
+		}
+		GSLog.Warning("Company asked about rules "+cID);
+	}
+}
+
 function CompanyDuude::Init() {
     if (!GSStoryPage.IsValidStoryPage(CompanyDuude.GetPageID(15, 0))) {
-    CompanyDuude.cPage[15 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_WELCOME_TITLE));
+    	CompanyDuude.cPage[15 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_WELCOME_TITLE));
     }
     local serverName = GSController.GetSetting("serverName");
-    if (serverName == 1)                { serverName = GSText(GSText.STR_SERVER_VANILLA); }
-    else if (serverName == 2)           { serverName = GSText(GSText.STR_SERVER_WELCOME); }
-    else if (serverName == 3)           { serverName = GSText(GSText.STR_SERVER_PUBLIC); }
-    else                                { serverName = GSText(GSText.STR_SERVER_DEFAULT); }
-    CompanyDuude.cPage[15 *3 + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(15, 0), CompanyDuude.cPage[15 * 3 +1], GSText(GSText.STR_WELCOME_WELCOME, serverName, GSText(GSText.STR_WELCOME_AWARE), GSText(GSText.STR_WELCOME_RULES)));
+    if (serverName == 1)                { serverName = GSText(GSText.STR_SERVER_VANILLA, GSText(GSText.STR_VANILLA_AWARE)); }
+    else if (serverName == 2)           { serverName = GSText(GSText.STR_SERVER_WELCOME, GSText(GSText.STR_WELCOME_AWARE)); }
+    else if (serverName == 3)           { serverName = GSText(GSText.STR_SERVER_PUBLIC, GSText(GSText.STR_PUBLIC_AWARE)); }
+    else                                { serverName = GSText(GSText.STR_SERVER_DEFAULT, GSText(GSText.STR_DEFAULT_AWARE)); }
+    CompanyDuude.cPage[15 *3 + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(15, 0), CompanyDuude.cPage[15 * 3 +1], GSText(GSText.STR_WELCOME_WELCOME, serverName, GSText(GSText.STR_WELCOME_RULES)));
     CompanyDuude.cPage[15 *3 + 2] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(15, 0), CompanyDuude.cPage[15 * 3 +2], GSText(GSText.STR_WELCOME_TEXT1, GSText(GSText.STR_WELCOME_TEXT2), GSText(GSText.STR_WELCOME_TEXT3)));
 
     if (!GSStoryPage.IsValidStoryPage(CompanyDuude.GetPageID(16, 0))) {
-    CompanyDuude.cPage[16 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_RULES_TITLE));
+    	CompanyDuude.cPage[16 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_RULES_TITLE));
     }
     CompanyDuude.cPage[16 *3 + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(16, 0), CompanyDuude.cPage[16 * 3 +1], GSText(GSText.STR_RULES_RULES, GSText(GSText.STR_RULES_STEALING), GSText(GSText.STR_RULES_TELEPORT)));
     CompanyDuude.cPage[16 *3 + 2] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(16, 0), CompanyDuude.cPage[16 * 3 +2], GSText(GSText.STR_RULES_GRIDS, GSText(GSText.STR_RULES_CENTRAL), GSText(GSText.STR_RULES_FORBIDS)));
 
     if (!GSStoryPage.IsValidStoryPage(CompanyDuude.GetPageID(19, 0))) {
-    CompanyDuude.cPage[17 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_SETTINGS_TITLE));
+    	CompanyDuude.cPage[17 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_SETTINGS_TITLE));
     }
 	local starting_year = 0;
 	if (GSGameSettings.IsValid("game_creation.starting_year")) { starting_year = GSGameSettings.GetValue("game_creation.starting_year"); }
@@ -161,6 +191,17 @@ function CompanyDuude::Init() {
     }
     CompanyDuude.cPage[19 *3 + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(19, 0), CompanyDuude.cPage[19 * 3 +1], GSText(GSText.STR_LINK_PRE));
     CompanyDuude.cPage[19 *3 + 2] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(19, 0), CompanyDuude.cPage[19 * 3 +2], GSText(GSText.STR_LINK_TELEGRAM, GSText(GSText.STR_LINK_DISCORD), GSText(GSText.STR_LINK_WEB)));
+
+	// if (!GSStoryPage.IsValidStoryPage(CompanyDuude.GetPageID(20, 0))) {
+    //     CompanyDuude.cPage[20 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_GOALS_TITLE));
+    // }
+    // CompanyDuude.cPage[20 *3 + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(20, 0), CompanyDuude.cPage[20 * 3 +1], GSText(GSText.STR_GOALS_PRE));
+    // CompanyDuude.cPage[20 *3 + 2] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(20, 0), CompanyDuude.cPage[20 * 3 +2], GSText(GSText.STR_GOALS_FIRST));
+
+	// if (!GSGoal.IsValidGoal(1)) {
+	// 	CompanyDuude.cGoal[1] = GSGoal.New(GSCompany.COMPANY_INVALID, "I READ THE RULES", GSGoal.GT_STORY_PAGE, CompanyDuude.GetPageID(16, 0));
+	// }
+	
 
     CompanyDuude.StoryUpgrade();
 }
