@@ -225,9 +225,9 @@ function CacheDuude::Monitoring()
 									}
 						if (GSCargo.GetCargoLabel(cargo) == "GOOD") // special monitoring of good
 							{
-							local h = CacheDuude.GetData("GOOD", company);
-							h += z;
-							CacheDuude.SetData("GOOD", company, h);
+							local p = CacheDuude.GetData("GOOD", company);
+							p += z;
+							CacheDuude.SetData("GOOD", company, p);
 							}
 						stown += z;
 						if (stown > 1000000)	{ GSCargoMonitor.GetTownDeliveryAmount(company, cargo, town, false); }
@@ -253,9 +253,9 @@ function CacheDuude::Monitoring()
 					local hh = GSCargo.GetCargoLabel(cargo);
 					if (Utils.INArray(hh, CacheDuude.cargo_tracker) != -1)  // special monitoring of specific cargos
 						{
-						local h = CacheDuude.GetData(hh, company);
-						h += z;
-						CacheDuude.SetData(hh, company, h);
+						local p = CacheDuude.GetData(hh, company);
+						p += z;
+						CacheDuude.SetData(hh, company, p);
 						}
 					sind += z;
 					if (sind > 1000000)	{ GSCargoMonitor.GetIndustryDeliveryAmount(company, cargo, industry, false); }

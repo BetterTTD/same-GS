@@ -5,7 +5,11 @@ STR_STUFF_TITLE         : Administration::Stuff
 STR_LINKS_TITLE         : Links::TeamGame_OpenTTD
 STR_PAGE_TITLE          : PAGE_TITLE_PLACEHOLDER
 
-STR_WELCOME_WELCOME     : {BLACK} - Добро пожаловать на {GREEN} 'TG Vanilla server' {BLACK} от {ORANGE} 'TeamGame_OpenTTD' !!! {}{}{STRING}
+STR_WELCOME_WELCOME     : {BLACK} - Добро пожаловать на {GREEN}{STRING}{BLACK} от {ORANGE}''TeamGame_OpenTTD''{BLACK} !!! {}{}{STRING}
+STR_SERVER_DEFAULT      : ''This server''
+STR_SERVER_VANILLA      : ''TG Vanilla server''
+STR_SERVER_WELCOME      : ''TG Welcome server''
+STR_SERVER_PUBLIC       : ''TG Public server''
 STR_WELCOME_TEXT1       : {BLACK}-{ORANGE} TeamGame_OpenTTD  - {BLACK} это открытое сообщество, где каждый может присоединиться и поиграть. {}{}{LTBLUE}{CHECKMARK}{BLACK} Это означает, что мы ожидаем от игроков достойного поведения, чтобы всем было весело и чтобы ситуация не вышла из-под контроля. {} Мы сообщество, которое пропагандирует кооперативный стиль игры.  Вместо того, чтобы конкурировать друг с другом, мы объединяемся и работаем для достижения одной цели совместными усилиями. {}{}{STRING}
 STR_WELCOME_TEXT2       : {LTBLUE}{CHECKMARK}{BLACK} Будьте дружелюбным. Это кажется очевидным, но на практике оказывается, что это не так. Если вы в плохом настроении, не порьтьте настроение другим.  «Отзывчивость» не только улучшает атмосферу, но и помогает вам получить больше помощи от других.{}{}{STRING}
 STR_WELCOME_TEXT3       : {BLACK}-{ORANGE} Серверы: {BLACK} Наше сообщество состоит из трех основных серверов. {}{}{BLACK}{RIGHT_ARROW}{ORANGE} TG Vanilla server {}{BLACK}{RIGHT_ARROW}{ORANGE} TG Welcome server {}{BLACK}{RIGHT_ARROW}{ORANGE} TG Public server {}{}
