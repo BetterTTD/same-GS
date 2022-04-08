@@ -117,20 +117,38 @@ function CompanyDuude::Init() {
     CompanyDuude.cPage[16 *3 + 2] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(16, 0), CompanyDuude.cPage[16 * 3 +2], GSText(GSText.STR_RULES_GRIDS, GSText(GSText.STR_RULES_CENTRAL), GSText(GSText.STR_RULES_FORBIDS)));
 
     if (!GSStoryPage.IsValidStoryPage(CompanyDuude.GetPageID(19, 0))) {
-    CompanyDuude.cPage[19 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_SETTINGS_TITLE));
+    CompanyDuude.cPage[17 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_SETTINGS_TITLE));
     }
-	local sy = 0;
-	if (GSGameSettings.IsValid("game_creation.starting_year")) { sy = GSGameSettings.GetValue("game_creation.starting_year"); }
-    local ey = 0;
-	if (GSGameSettings.IsValid("network.restart_game_year")) { ey = GSGameSettings.GetValue("network.restart_game_year"); }
-    local mt = 0;
-	if (GSGameSettings.IsValid("vehicle.max_trains")) { mt = GSGameSettings.GetValue("vehicle.max_trains"); }
-	local mrv = 0;
-	if (GSGameSettings.IsValid("vehicle.max_roadveh")) { mrv = GSGameSettings.GetValue("vehicle.max_roadveh"); }
-	CompanyDuude.cPage[19 *3 + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(19, 0), CompanyDuude.cPage[19 * 3 +1], GSText(GSText.STR_SETTINGS_SET1, sy, ey, GSText(GSText.STR_SETTINGS_SET2), mt, GSText(GSText.STR_SETTINGS_SET3), mrv));
-    // local bd = 0;
-	// if (GSGameSettings.IsValid("difficulty.vehicle_breakdowns")) { bd = GSGameSettings.GetValue("difficulty.vehicle_breakdowns"); }
-	CompanyDuude.cPage[19 *3 + 2] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(19, 0), CompanyDuude.cPage[19 * 3 +2], GSText(GSText.STR_SETTINGS_SET4, GSText(GSText.STR_SETTINGS_SET5), GSText(GSText.STR_SETTINGS_SET6)));
+	local starting_year = 0;
+	if (GSGameSettings.IsValid("game_creation.starting_year")) { starting_year = GSGameSettings.GetValue("game_creation.starting_year"); }
+    local restart_game_year = 0;
+    local game_duration = 0;
+	if (GSGameSettings.IsValid("network.restart_game_year")) {
+		if (GSGameSettings.GetValue("network.restart_game_year") != 0) {
+			restart_game_year = GSGameSettings.GetValue("network.restart_game_year");
+			game_duration = GSText(GSText.STR_DUR_GAME, restart_game_year, restart_game_year-starting_year);
+		} else {
+			game_duration = GSText(GSText.STR_DUR_2GAME);
+		}
+	}
+	local max_trains = 0;
+	if (GSGameSettings.IsValid("vehicle.max_trains")) { max_trains = GSGameSettings.GetValue("vehicle.max_trains"); }
+	local max_roadveh = 0;
+	if (GSGameSettings.IsValid("vehicle.max_roadveh")) { max_roadveh = GSGameSettings.GetValue("vehicle.max_roadveh"); }
+	local max_ships = 0;
+	if (GSGameSettings.IsValid("vehicle.max_ships")) { max_ships = GSGameSettings.GetValue("vehicle.max_ships"); }
+	local max_aircraft = 0;
+	if (GSGameSettings.IsValid("vehicle.max_aircraft")) { max_aircraft = GSGameSettings.GetValue("vehicle.max_aircraft"); }
+	CompanyDuude.cPage[17 *3 + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(17, 0), CompanyDuude.cPage[17 * 3 +1], GSText(GSText.STR_SETTINGS_SET1, starting_year, game_duration, GSText(GSText.STR_SETTINGS_SET2), max_roadveh, max_ships, max_aircraft, GSText(GSText.STR_SETTINGS_SET3), max_trains, GSText(GSText.STR_SETTINGS_SET4)));
+    local max_bridge_length = 0;
+	if (GSGameSettings.IsValid("construction.max_bridge_length")) { max_bridge_length = GSGameSettings.GetValue("construction.max_bridge_length"); }
+	local max_tunnel_length = 0;
+	if (GSGameSettings.IsValid("construction.max_tunnel_length")) { max_tunnel_length = GSGameSettings.GetValue("construction.max_tunnel_length"); }
+	local station_spread = 0;
+	if (GSGameSettings.IsValid("station.station_spread")) { station_spread = GSGameSettings.GetValue("station.station_spread"); }
+	local max_loan = 0;
+	if (GSGameSettings.IsValid("difficulty.max_loan")) { max_loan = GSGameSettings.GetValue("difficulty.max_loan"); }
+	CompanyDuude.cPage[17 *3 + 2] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(17, 0), CompanyDuude.cPage[17 * 3 +2], GSText(GSText.STR_SETTINGS_SET5, GSText(GSText.STR_SETTINGS_SET6), GSText(GSText.STR_SETTINGS_SET7), GSText(GSText.STR_SETTINGS_SET8), GSText(GSText.STR_SETTINGS_SET9), max_bridge_length, max_tunnel_length, station_spread, max_loan));
 
     if (!GSStoryPage.IsValidStoryPage(CompanyDuude.GetPageID(18, 0))) {
         CompanyDuude.cPage[18 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_STUFF_TITLE));
@@ -138,11 +156,11 @@ function CompanyDuude::Init() {
     CompanyDuude.cPage[18 *3 + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(18, 0), CompanyDuude.cPage[18 * 3 +1], GSText(GSText.STR_STUFF_SET1, GSText(GSText.STR_STUFF_SET2), GSText(GSText.STR_STUFF_SET3)));
     CompanyDuude.cPage[18 *3 + 2] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(18, 0), CompanyDuude.cPage[18 * 3 +2], GSText(GSText.STR_STUFF_SET4, GSText(GSText.STR_STUFF_SET5), GSText(GSText.STR_STUFF_SET6)));
 
-    if (!GSStoryPage.IsValidStoryPage(CompanyDuude.GetPageID(17, 0))) {
-        CompanyDuude.cPage[17 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_LINKS_TITLE));
+    if (!GSStoryPage.IsValidStoryPage(CompanyDuude.GetPageID(19, 0))) {
+        CompanyDuude.cPage[19 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_LINKS_TITLE));
     }
-    CompanyDuude.cPage[17 *3 + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(17, 0), CompanyDuude.cPage[17 * 3 +1], GSText(GSText.STR_LINK_PRE));
-    CompanyDuude.cPage[17 *3 + 2] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(17, 0), CompanyDuude.cPage[17 * 3 +2], GSText(GSText.STR_LINK_TELEGRAM, GSText(GSText.STR_LINK_DISCORD), GSText(GSText.STR_LINK_WEB)));
+    CompanyDuude.cPage[19 *3 + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(19, 0), CompanyDuude.cPage[19 * 3 +1], GSText(GSText.STR_LINK_PRE));
+    CompanyDuude.cPage[19 *3 + 2] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(19, 0), CompanyDuude.cPage[19 * 3 +2], GSText(GSText.STR_LINK_TELEGRAM, GSText(GSText.STR_LINK_DISCORD), GSText(GSText.STR_LINK_WEB)));
 
     CompanyDuude.StoryUpgrade();
 }
