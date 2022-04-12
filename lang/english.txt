@@ -25,7 +25,7 @@ STR_WELCOME_RULES       : {BLACK}-{YELLOW} Please! {BLACK} Keep in mind that the
 STR_RULES_RULES         : {BLACK}-{YELLOW} Rules is simple:{}{}{}{STRING}{}{}{}{STRING}
 STR_RULES_STEALING      : {BLACK}{RIGHT_ARROW}-{ORANGE} No stealing {BLACK}: you cannot connect to any taken industry. Not primary, not secondary. Except power plant.
 STR_RULES_TELEPORT      : {BLACK}{RIGHT_ARROW}-{ORANGE} No teleporting {BLACK}: make distance between station name and vehicle arrival point minimal. You still can spread station around to get more cargo, transfer stations mus be physically connected (no more than 2 tiles between platforms).{}
-STR_RULES_GRIDS         : {BLACK}{RIGHT_ARROW}-{ORANGE} No city grids {BLACK}: 3x3 road cells to make city grow faster. Only tiny fixes inside the city. If you are really need some roads in city, make sure you don't miss «natural» 3x3 grid.{}{}{}{STRING}{}{}{}{STRING}
+STR_RULES_GRIDS         : {BLACK}{RIGHT_ARROW}-{ORANGE} No city grids {BLACK}: 3x3 road cells to make city grow faster. Only tiny fixes inside the city. If you are really need some roads in city, make sure you create 'Thrown Away' company - build roads and make company bankrupt. After that roads will become public destroyable and each play will have acces to city. Don't miss «natural» 3x3 grid.{}{}{}{STRING}{}{}{}{STRING}
 STR_RULES_CENTRAL       : {BLACK}{RIGHT_ARROW}-{ORANGE} Do not{BLACK} destroy the central tile and roads of the city!
 STR_RULES_FORBIDS       : {BLACK}{RIGHT_ARROW}-{RED} Forbidden:{}{}{BLACK}-{LTBLUE} Blocking{}{BLACK}-{LTBLUE} Griefing{}{BLACK}-{LTBLUE} Trolling !!!{}
 
@@ -54,17 +54,17 @@ STR_LINK_WEB            : {BLACK}- {WHITE}https://tg-ottd.org{}
 STR_GOALS_PRE           : "STR_GOALS_PRE"
 STR_GOALS_FIRST         : "STR_GOALS_FIRST"
 
-STR_QUESTION_RULES1     : {WHITE}Hi, stranger. {}{} We are glad that you have choosen our server for the game, but first of all we want to make sure that you are aware of our {YELLOW} Rules {WHITE}. {}{} You can find the rules in the ''StoryBook tab''. Please read them, they are quite simple and short. {}{} Keep in mind that by clicking the button below - you agree to our rules and undertake to comply with them.
+STR_QUESTION_RULES1     : {WHITE} Hi, stranger. {}{} We are glad that you have choosen our server for the game, but first of all we want to make sure that you are aware of our {YELLOW} Rules {WHITE}. {}{} You can find the rules in the ''StoryBook tab''. Please read them, they are quite simple and short. {}{} Keep in mind that by clicking the button below - you agree to our rules and undertake to comply with them.
 STR_QUESTION_RULES2     : {YELLOW} The company {LTBLUE}{COMPANY} {YELLOW} has {RED} not yet {ORANGE} ACCEPTED {YELLOW} our rules.
 STR_ACCEPTED_RULES      : {YELLOW} The company {LTBLUE}{COMPANY} {YELLOW} read our rules and  {GREEN} ACCEPTED {YELLOW} the condition to comply with them. Congratz!!!
 STR_DECLINED_RULES      : {YELLOW} The company {LTBLUE}{COMPANY} {YELLOW} read our rules and  {RED} DECLINED {YELLOW} the condition to comply with them. sad......
 
 STR_DUR_GAME            : {LTBLUE} {NUM} {YELLOW}] {BLACK} about [{BLACK} {NUM} {BLACK}] {BLACK}years {}{}{}{STRING}
-STR_DUR_2GAME           : {LTBLUE}Right time {RED}* {YELLOW}] {}{}{RED}*{BLACK} Server restarts when is the right time to do it (when map is full or people get bored). Questions when exactly that happens are considered {RED} EVIL {BLACK} !!! {}{}{}{STRING}
+STR_DUR_2GAME           : {LTBLUE} Right time {RED}* {YELLOW}] {}{}{RED}*{BLACK} Server restarts when is the right time to do it (when map is full or people get bored). Questions when exactly that happens are considered {RED} EVIL {BLACK} !!! {}{}{}{STRING}
 STR_RED                 : {RED}{STRING}
 STR_ORANGE              : {ORANGE}{STRING}
 STR_YELLOW              : {YELLOW}{STRING}
 STR_GREEN               : {GREEN}{STRING}
 STR_RANK                : {NUM} - {COMPANY} with {NUM} points
-STR_RANK_COMPANY        : {BLACK}Hi, {LTBLUE}{COMPANY}{}{}{BLACK} We are glad that you have choosen our server for the game, but first of all we want to make sure that you are aware of our {YELLOW} Rules {BLACK}. {}{}Please read them, they are quite simple and short.{}{}{STRING}
+STR_RANK_COMPANY        : {BLACK} Hi, {LTBLUE}{COMPANY}{}{}{BLACK} We are glad that you have choosen our server for the game, but first of all we want to make sure that you are aware of our {YELLOW} Rules {BLACK}. {}{} Please read them, they are quite simple and short.{}{}{STRING}
 STR_RANK_COMPANY2       : {BLACK} Your company has {RED} not yet {ORANGE} ACCEPTED {BLACK} our rules.

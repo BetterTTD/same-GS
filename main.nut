@@ -78,7 +78,7 @@ function TeamDuude::HandleEvents() {
 							if (GSGoal.IsValidGoal(i)) {
 								GSGoal.SetText(GSCompany.ResolveCompanyID(i), GSText(GSText.STR_ACCEPTED_RULES, i));
 								GSGoal.SetCompleted(GSCompany.ResolveCompanyID(i), true);
-								GSStoryPage.Show(CompanyDuude.GetPageID(15, 0));
+								// GSStoryPage.Show(CompanyDuude.GetPageID(15, 0));
 							}
 						} else if (b == GSGoal.BUTTON_DECLINE) {
 								TeamDuude.FeedTheDuude(i);
