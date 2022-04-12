@@ -25,7 +25,7 @@ STR_WELCOME_RULES       : {BLACK}-{YELLOW} Please! {BLACK} Keep in mind that the
 STR_RULES_RULES         : {BLACK}-{YELLOW} Rules is simple:{}{}{}{STRING}{}{}{}{STRING}
 STR_RULES_STEALING      : {BLACK}{RIGHT_ARROW}-{ORANGE} No stealing {BLACK}: you cannot connect to any taken industry. Not primary, not secondary. Except power plant.
 STR_RULES_TELEPORT      : {BLACK}{RIGHT_ARROW}-{ORANGE} No teleporting {BLACK}: make distance between station name and vehicle arrival point minimal. You still can spread station around to get more cargo, transfer stations mus be physically connected (no more than 2 tiles between platforms).{}
-STR_RULES_GRIDS         : {BLACK}{RIGHT_ARROW}-{ORANGE} No city grids {BLACK}: 3x3 road cells to make city grow faster. Only tiny fixes inside the city. If you are really need some roads in city, make sure you don't miss «natural» 3x3 grid.{}{}{}{STRING}{}{}{}{STRING}
+STR_RULES_GRIDS         : {BLACK}{RIGHT_ARROW}-{ORANGE} No city grids {BLACK}: 3x3 road cells to make city grow faster. Only tiny fixes inside the city. If you are really need some roads in city, make sure you create 'Thrown Away' company - build roads and make company bankrupt. After that roads will become public destroyable and each play will have acces to city. Don't miss «natural» 3x3 grid.{}{}{}{STRING}{}{}{}{STRING}
 STR_RULES_CENTRAL       : {BLACK}{RIGHT_ARROW}-{ORANGE} Do not{BLACK} destroy the central tile and roads of the city!
 STR_RULES_FORBIDS       : {BLACK}{RIGHT_ARROW}-{RED} Forbidden:{}{}{BLACK}-{LTBLUE} Blocking{}{BLACK}-{LTBLUE} Griefing{}{BLACK}-{LTBLUE} Trolling !!!{}
 
