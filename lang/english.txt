@@ -66,10 +66,5 @@ STR_ORANGE              : {ORANGE}{STRING}
 STR_YELLOW              : {YELLOW}{STRING}
 STR_GREEN               : {GREEN}{STRING}
 STR_RANK                : {NUM} - {COMPANY} with {NUM} points
-<<<<<<< HEAD
 STR_RANK_COMPANY        : {BLACK} Hi, {LTBLUE}{COMPANY}{}{}{BLACK} We are glad that you have choosen our server for the game, but first of all we want to make sure that you are aware of our {YELLOW} Rules {BLACK}. {}{} Please read them, they are quite simple and short.{}{}{STRING}
 STR_RANK_COMPANY2       : {BLACK} Your company has {RED} not yet {ORANGE} ACCEPTED {BLACK} our rules.
-=======
-STR_RANK_COMPANY        : {BLACK}Hi, {LTBLUE}{COMPANY}{}{}{BLACK} We are glad that you have choosen our server for the game, but first of all we want to make sure that you are aware of our {YELLOW} Rules {BLACK}. {}{}Please read them, they are quite simple and short.{}{}{STRING}
-STR_RANK_COMPANY2       : {BLACK} Your company has {RED} not yet {ORANGE} ACCEPTED {BLACK} our rules.
->>>>>>> f25e6fed771ebb4f28594d3bebaf866ecb9a54fe
