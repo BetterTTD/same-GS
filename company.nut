@@ -133,18 +133,24 @@ function CompanyDuude::Init() {
     	CompanyDuude.cPage[15 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_WELCOME_TITLE));
     }
     local serverName = GSController.GetSetting("serverName");
-    if (serverName == 1)                { serverName = GSText(GSText.STR_SERVER_VANILLA, GSText(GSText.STR_VANILLA_AWARE)); }
-    else if (serverName == 2)           { serverName = GSText(GSText.STR_SERVER_WELCOME, GSText(GSText.STR_WELCOME_AWARE)); }
-    else if (serverName == 3)           { serverName = GSText(GSText.STR_SERVER_PUBLIC, GSText(GSText.STR_PUBLIC_AWARE)); }
-    else                                { serverName = GSText(GSText.STR_SERVER_DEFAULT, GSText(GSText.STR_DEFAULT_AWARE)); }
-    CompanyDuude.cPage[15 *3 + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(15, 0), CompanyDuude.cPage[15 * 3 +1], GSText(GSText.STR_WELCOME_WELCOME, serverName, GSText(GSText.STR_WELCOME_RULES)));
-    CompanyDuude.cPage[15 *3 + 2] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(15, 0), CompanyDuude.cPage[15 * 3 +2], GSText(GSText.STR_WELCOME_TEXT1, GSText(GSText.STR_WELCOME_TEXT2), GSText(GSText.STR_WELCOME_TEXT3)));
+    if (serverName == 1)                { serverName = GSText(GSText.STR_WELCOME_WELCOME, GSText(GSText.STR_SERVER_VANILLA), GSText(GSText.STR_RED), GSText(GSText.STR_IMPORTANT), GSText(GSText.STR_YELLOW), GSText(GSText.STR_SERVER_VANILLA_AWARE)); }
+    else if (serverName == 2)           { serverName = GSText(GSText.STR_WELCOME_WELCOME, GSText(GSText.STR_SERVER_WELCOME), GSText(GSText.STR_RED), GSText(GSText.STR_IMPORTANT), GSText(GSText.STR_YELLOW), GSText(GSText.STR_SERVER_WELCOME_AWARE)); }
+    else if (serverName == 3)           { serverName = GSText(GSText.STR_WELCOME_WELCOME, GSText(GSText.STR_SERVER_PUBLIC), GSText(GSText.STR_RED), GSText(GSText.STR_IMPORTANT), GSText(GSText.STR_YELLOW), GSText(GSText.STR_SERVER_PUBLIC_AWARE)); }
+    else                                { serverName = GSText(GSText.STR_WELCOME_WELCOME, GSText(GSText.STR_SERVER_DEFAULT), GSText(GSText.STR_RED), GSText(GSText.STR_IMPORTANT), GSText(GSText.STR_YELLOW), GSText(GSText.STR_SERVER_DEFAULT_AWARE)); }
+    CompanyDuude.cPage[15 *3 + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(15, 0), CompanyDuude.cPage[15 * 3 +1], GSText(GSText.STR_BLACK, serverName, GSText(GSText.STR_ORANGE), GSText(GSText.STR_PLEASE),GSText(GSText.STR_YELLOW), GSText(GSText.STR_WELCOME_RULES)));
+    local check = GSText(GSText.STR_LTBLUE, GSText(GSText.STR_CHECK), GSText(GSText.STR_BLACK));
+	local arrow = GSText(GSText.STR_YELLOW, GSText(GSText.STR_ARROW));
+	local srv = GSText(GSText.STR_BLANK, GSText(GSText.STR_ORANGE), GSText(GSText.STR_SERVERS), GSText(GSText.STR_BLACK), GSText(GSText.STR_WELCOME_SERV));
+	local wlcm_txt = GSText(GSText.STR_ORANGE, GSText(GSText.STR_TGOTTD), GSText(GSText.STR_BLACK), GSText(GSText.STR_WELCOME_TEXT1), check, GSText(GSText.STR_WELCOME_TEXT2), check, GSText(GSText.STR_WELCOME_TEXT3), check, GSText(GSText.STR_WELCOME_TEXT4), check, GSText(GSText.STR_BLANK), srv, arrow, GSText(GSText.STR_SERVER_S1), arrow, GSText(GSText.STR_SERVER_S2), arrow, GSText(GSText.STR_SERVER_S3));
+	CompanyDuude.cPage[15 *3 + 2] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(15, 0), CompanyDuude.cPage[15 * 3 +2], GSText(GSText.STR_BLANK, wlcm_txt));
 
     if (!GSStoryPage.IsValidStoryPage(CompanyDuude.GetPageID(16, 0))) {
     	CompanyDuude.cPage[16 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_RULES_TITLE));
     }
-    CompanyDuude.cPage[16 *3 + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(16, 0), CompanyDuude.cPage[16 * 3 +1], GSText(GSText.STR_RULES_RULES, GSText(GSText.STR_RULES_STEALING), GSText(GSText.STR_RULES_TELEPORT)));
-    CompanyDuude.cPage[16 *3 + 2] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(16, 0), CompanyDuude.cPage[16 * 3 +2], GSText(GSText.STR_RULES_GRIDS, GSText(GSText.STR_RULES_CENTRAL), GSText(GSText.STR_RULES_FORBIDS)));
+	local triple_hash = GSText(GSText.STR_BLACK, GSText(GSText.STR_3HASH), GSText(GSText.STR_ORANGE));
+	local single_hash = GSText(GSText.STR_BLACK, GSText(GSText.STR_1HASH), GSText(GSText.STR_ORANGE));
+    CompanyDuude.cPage[16 *3 + 1] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(16, 0), CompanyDuude.cPage[16 * 3 +1], GSText(GSText.STR_BLANK, triple_hash, GSText(GSText.STR_RULES_RULES), single_hash, GSText(GSText.STR_RULES_STEALING), single_hash, GSText(GSText.STR_RULES_TELEPORT)));
+    CompanyDuude.cPage[16 *3 + 2] = CompanyDuude.StoryUpdate(CompanyDuude.GetPageID(16, 0), CompanyDuude.cPage[16 * 3 +2], GSText(GSText.STR_BLANK, single_hash, GSText(GSText.STR_RULES_GRIDS), single_hash, GSText(GSText.STR_RULES_CENTRAL), single_hash, GSText(GSText.STR_RULES_FORBIDS)));
 
     if (!GSStoryPage.IsValidStoryPage(CompanyDuude.GetPageID(19, 0))) {
     	CompanyDuude.cPage[17 * 3] = GSStoryPage.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_SETTINGS_TITLE));
