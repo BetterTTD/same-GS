@@ -17,7 +17,7 @@ STR_1HASH                   : # {STRING}
 STR_3HASH                   : ### {STRING}
 
 STR_WELCOME_WELCOME         : Welcome to {GREEN} {STRING} {BLACK}  by  {ORANGE} ''TeamGame_OpenTTD'' {BLACK} !!! {}{} {STRING}
-STR_WELCOME_RULES           : Keep in mind that there are rules on this server. {}{}
+STR_WELCOME_RULES           : Keep in mind that there are rules on this server. {}
 STR_WELCOME_TEXT1           : is an open community where everyone is welcome to join in and play. {}{} {STRING}
 STR_WELCOME_TEXT2           : This does mean that we expect decent behaviour from the players to keep it fun for everyone and to stop things from getting out of hand. {}{} {STRING}
 STR_WELCOME_TEXT3           : We are community that promotes the coop style of playing games. Instead of competing with each other, we group together and work towards one goal with our combined efforts. {}{} {STRING}
@@ -34,15 +34,22 @@ STR_RULES_GRIDS             : No city grids: {} {BLACK}  3x3 road cells to make 
 STR_RULES_CENTRAL           : Do not destroy the central tile and roads of the city! {}{} {STRING}
 STR_RULES_FORBIDS           : Forbidden: {} {BLACK} - {LTBLUE} Blocking {} {BLACK} - {LTBLUE} Griefing {} {BLACK} - {LTBLUE} Trolling !!!
 
-STR_SETTINGS_SET1           : Game duration {YELLOW}- [ {LTBLUE} {NUM} - {STRING}
-STR_SETTINGS_SET2           : Max [road vehicles] {YELLOW} / {BLACK} [ships] {YELLOW} / {BLACK} [aircrafts] {YELLOW}- [ {LTBLUE} {NUM} ] {YELLOW} / {YELLOW} [ {LTBLUE} {NUM} ] {YELLOW} / {YELLOW} [ {LTBLUE} {NUM} ] {BLACK} {}{}{STRING}
-STR_SETTINGS_SET3           : Max [trains] {YELLOW}- [ {LTBLUE} {NUM} {YELLOW} ] . . . . . . . . . . . {STRING}
-STR_SETTINGS_SET4           : Breakdowns {YELLOW}- [ {LTBLUE} OFF {YELLOW} ] {BLACK}
-STR_SETTINGS_SET5           : Rail firstred twoway eol {YELLOW}- [ {LTBLUE} ON {YELLOW} ] . {STRING}
-STR_SETTINGS_SET6           : Inflation {YELLOW}- [ {LTBLUE} OFF {YELLOW} ] {BLACK} {}{}{STRING}
-STR_SETTINGS_SET7           : Never expire vehicles {YELLOW}- [ {LTBLUE} ON {YELLOW} ] . . . . {STRING}
-STR_SETTINGS_SET8           : Forbid 90 deg turns {YELLOW}- [ {LTBLUE} ON {YELLOW} ] {BLACK} {}{}{STRING}
-STR_SETTINGS_SET9           : Max bridge length {YELLOW}- [ {LTBLUE} {NUM} {YELLOW} ] . . . . . . . . . {YELLOW}#{BLACK} Max tunnel length {YELLOW}- [ {LTBLUE} {NUM} {YELLOW} ] {BLACK} {}{} {YELLOW}#{BLACK} Station spread {YELLOW}- [ {LTBLUE} {NUM} {YELLOW} ] . . . . . . . . . . . . {YELLOW}#{BLACK} Max loan {YELLOW}- [ {LTBLUE} {NUM} {YELLOW} ] {BLACK}
+STR_SETTINGS_SET01          : Game duration - <{LTBLUE} {NUM} - {STRING}
+STR_SETTINGS_SET02          : {LTBLUE} {NUM} {ORANGE}> {BLACK} about [{BLACK} {NUM} {BLACK}] years {}{}{} {STRING}
+STR_SETTINGS_SET03          : {LTBLUE} Right time {RED} * {ORANGE}> {}{} {RED} * {BLACK} Server restarts when is the right time to do it (when map is full or people get bored). Questions when exactly that happens are considered {RED} EVIL {BLACK} !!! {}{}{} {STRING}
+STR_SETTINGS_SET04          : Breakdowns - <{LTBLUE} OFF {ORANGE}> {STRING}
+STR_SETTINGS_SET05          : Rail firstred twoway eol - <{LTBLUE} ON {ORANGE}> {}{} {STRING}
+STR_SETTINGS_SET06          : Inflation - <{LTBLUE} OFF {ORANGE}> {STRING}
+STR_SETTINGS_SET07          : Never expire vehicles - <{LTBLUE} ON {ORANGE}> {}{} {STRING}
+STR_SETTINGS_SET08          : Forbid 90 deg turns - <{LTBLUE} ON {ORANGE}> {STRING}
+STR_SETTINGS_SET09          : Max bridge length - <{LTBLUE} {NUM} {ORANGE}> {}{} {STRING}
+STR_SETTINGS_SET10          : Max tunnel length - <{LTBLUE} {NUM} {ORANGE}>
+STR_SETTINGS_SET11          : Station spread - <{LTBLUE} {NUM} {ORANGE}> {STRING}
+STR_SETTINGS_SET12          : Max loan - <{LTBLUE} {NUM} {ORANGE}> {}{} {STRING}
+STR_SETTINGS_SET13          : Max trains - <{LTBLUE} {NUM} {ORANGE}> {STRING}
+STR_SETTINGS_SET14          : Max road vehicles - <{LTBLUE} {NUM} {ORANGE}> {}{} {STRING}
+STR_SETTINGS_SET15          : Max ships - <{LTBLUE} {NUM} {ORANGE}> {STRING}
+STR_SETTINGS_SET16          : Max aircrafts - <{LTBLUE} {NUM} {ORANGE}>
 
 STR_STUFF_SET1              : iTKerry {}#{LTBLUE} Administrator: {GREEN}[ general ]{}{}{STRING}{}{}{STRING}
 STR_STUFF_SET2              : same-f {}#{LTBLUE} Administrator: {GREEN}[ general ]
@@ -64,8 +71,6 @@ STR_QUESTION_RULES2         : {YELLOW} The company {LTBLUE}{COMPANY} {YELLOW} ha
 STR_ACCEPTED_RULES          : {YELLOW} The company {LTBLUE}{COMPANY} {YELLOW} read our rules and  {GREEN} ACCEPTED {YELLOW} the condition to comply with them. Congratz!!!
 STR_DECLINED_RULES          : {YELLOW} The company {LTBLUE}{COMPANY} {YELLOW} read our rules and  {RED} DECLINED {YELLOW} the condition to comply with them. sad......
 
-STR_DUR_GAME                : {LTBLUE} {NUM} {YELLOW} ] {BLACK} about [{BLACK} {NUM} {BLACK}] {BLACK}years {}{}{STRING}
-STR_DUR_2GAME               : {LTBLUE} Right time {RED}* {YELLOW} ] {}{RED}*{BLACK} Server restarts when is the right time to do it (when map is full or people get bored). Questions when exactly that happens are considered {RED} EVIL {BLACK} !!! {}{}{STRING}
 STR_RANK                    : {NUM} - {COMPANY} with {NUM} points
 STR_RANK_COMPANY            : {BLACK} Hi, {LTBLUE}{COMPANY}{}{}{BLACK} We are glad that you have choosen our server for the game, but first of all we want to make sure that you are aware of our {YELLOW} Rules {BLACK}. {}{} Please read them, they are quite simple and short.{}{}{STRING}
 STR_RANK_COMPANY2           : {BLACK} Your company has {RED} not yet {ORANGE} ACCEPTED {BLACK} our rules.
@@ -76,7 +81,7 @@ STR_SETTINGS_TITLE          : Server::Settings
 STR_STUFF_TITLE             : Administration::Stuff
 STR_LINKS_TITLE             : Links::Social
 STR_GOALS_TITLE             : Goals::ForYou
-STR_COMPANY_TITLE           : {COMPANY}::Statistics
+STR_COMPANY_TITLE           : {COMPANY}::Page
 
 STR_SERVER_DEFAULT          : ''This server''
 STR_SERVER_VANILLA          : ''TG Vanilla server''
