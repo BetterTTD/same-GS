@@ -1,7 +1,10 @@
-STR_RED                     : {RED}{STRING}
-STR_ORANGE                  : {ORANGE}{STRING}
-STR_YELLOW                  : {YELLOW}{STRING}
-STR_GREEN                   : {GREEN}{STRING}
+STR_RED                     : 0
+STR_ORANGE                  : 0
+STR_YELLOW                  : 0
+STR_GREEN                   : 0
+STR_ORANGE_COL              : {ORANGE} {STRING}
+STR_RED_COL                 : {RED} {STRING}
+STR_YELLOW_COL              : {YELLOW} {STRING}
 STR_BLACK                   : {BLACK} {STRING}
 STR_WHITE                   : {WHITE} {STRING}
 STR_LTBLUE                  : {LTBLUE} {STRING}
@@ -35,21 +38,21 @@ STR_RULES_CENTRAL           : Do not destroy the central tile and roads of the c
 STR_RULES_FORBIDS           : Forbidden: {} {BLACK} - {LTBLUE} Blocking {} {BLACK} - {LTBLUE} Griefing {} {BLACK} - {LTBLUE} Trolling !!!
 
 STR_SETTINGS_SET01          : Game duration - <{LTBLUE} {NUM} - {STRING}
-STR_SETTINGS_SET02          : {LTBLUE} {NUM} {ORANGE}> {BLACK} about [{BLACK} {NUM} {BLACK}] years {}{}{} {STRING}
-STR_SETTINGS_SET03          : {LTBLUE} Right time {RED} * {ORANGE}> {}{} {RED} * {BLACK} Server restarts when is the right time to do it (when map is full or people get bored). Questions when exactly that happens are considered {RED} EVIL {BLACK} !!! {}{}{} {STRING}
-STR_SETTINGS_SET04          : Breakdowns - <{LTBLUE} OFF {ORANGE}> {STRING}
-STR_SETTINGS_SET05          : Rail firstred twoway eol - <{LTBLUE} ON {ORANGE}> {}{} {STRING}
-STR_SETTINGS_SET06          : Inflation - <{LTBLUE} OFF {ORANGE}> {STRING}
-STR_SETTINGS_SET07          : Never expire vehicles - <{LTBLUE} ON {ORANGE}> {}{} {STRING}
-STR_SETTINGS_SET08          : Forbid 90 deg turns - <{LTBLUE} ON {ORANGE}> {STRING}
-STR_SETTINGS_SET09          : Max bridge length - <{LTBLUE} {NUM} {ORANGE}> {}{} {STRING}
-STR_SETTINGS_SET10          : Max tunnel length - <{LTBLUE} {NUM} {ORANGE}>
-STR_SETTINGS_SET11          : Station spread - <{LTBLUE} {NUM} {ORANGE}> {STRING}
-STR_SETTINGS_SET12          : Max loan - <{LTBLUE} {NUM} {ORANGE}> {}{} {STRING}
-STR_SETTINGS_SET13          : Max trains - <{LTBLUE} {NUM} {ORANGE}> {STRING}
-STR_SETTINGS_SET14          : Max road vehicles - <{LTBLUE} {NUM} {ORANGE}> {}{} {STRING}
-STR_SETTINGS_SET15          : Max ships - <{LTBLUE} {NUM} {ORANGE}> {STRING}
-STR_SETTINGS_SET16          : Max aircrafts - <{LTBLUE} {NUM} {ORANGE}>
+STR_SETTINGS_SET02          : {LTBLUE} {NUM} {ORANGE}> {BLACK} about [{BLACK} {NUM} {BLACK}] years {}{}{}  {STRING}
+STR_SETTINGS_SET03          : {LTBLUE} Right time {RED} * {ORANGE}> {}{} {RED} * {BLACK} Server restarts when is the right time to do it (when map is full or people get bored). Questions when exactly that happens are considered {RED} EVIL {BLACK}!!! {}{}{}  {STRING}
+STR_SETTINGS_SET04          : - Breakdowns ---- <{LTBLUE} OFF {ORANGE}> {STRING}
+STR_SETTINGS_SET05          : - Rail firstred twoway eol - <{LTBLUE} ON {ORANGE}>
+STR_SETTINGS_SET06          : - Inflation ------- <{LTBLUE} OFF {ORANGE}>  {STRING}
+STR_SETTINGS_SET07          : - Never expire vehicles - <{LTBLUE} ON {ORANGE}> {}{} {STRING}
+STR_SETTINGS_SET08          : - Forbid 90 deg turns ----- <{LTBLUE} ON {ORANGE}>
+STR_SETTINGS_SET09          : - Max bridge length - <{LTBLUE} {NUM} {ORANGE}> {STRING}
+STR_SETTINGS_SET10          : - Max tunnel length ------- <{LTBLUE} {NUM} {ORANGE}>
+STR_SETTINGS_SET11          : - Station spread ---------- <{LTBLUE} {NUM} {ORANGE}> {}{}  {STRING}
+STR_SETTINGS_SET12          : - Max loan --- <{LTBLUE} {NUM} {ORANGE}> {STRING}
+STR_SETTINGS_SET13          : - Max trains ---- <{LTBLUE} {NUM} {ORANGE}>  {BLACK}  (yes, this server about trains)
+STR_SETTINGS_SET14          : - Max roadvehs --- <{LTBLUE} {NUM} {ORANGE}>{STRING}
+STR_SETTINGS_SET15          : - Max ships ------------ <{LTBLUE} {NUM} {ORANGE}> {}{}  {STRING}
+STR_SETTINGS_SET16          : - Max aircrafts --- <{LTBLUE} {NUM} {ORANGE}>  {BLACK}  (you really want use it?)
 
 STR_STUFF_SET1              : iTKerry {}#{LTBLUE} Administrator: {GREEN}[ general ]{}{}{STRING}{}{}{STRING}
 STR_STUFF_SET2              : same-f {}#{LTBLUE} Administrator: {GREEN}[ general ]
@@ -89,6 +92,6 @@ STR_SERVER_WELCOME          : ''TG Welcome server''
 STR_SERVER_PUBLIC           : ''TG Public server''
 
 STR_SERVER_DEFAULT_AWARE    : PLACEHOLDER. {}{} {STRING}
-STR_SERVER_VANILLA_AWARE    : Company will be removed in {RED} 4 hours {YELLOW} after last player leave it. {}{} {STRING}
-STR_SERVER_WELCOME_AWARE    : Dont forget to set PASSWORD on your company, for prevent reset. {}{} {STRING}
+STR_SERVER_VANILLA_AWARE    : Company will be removed in {RED} 4 hours {YELLOW} after last player leave it. {}{}
+STR_SERVER_WELCOME_AWARE    : Dont forget to set PASSWORD on your company, for prevent reset. {}{}
 STR_SERVER_PUBLIC_AWARE     : PLACEHOLDER. {}{} {STRING}
