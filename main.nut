@@ -59,7 +59,11 @@ function TeamDuude::HandleEvents() {
 						local e = GSEventCompanyNew.Convert(event);
 						local c = e.GetCompanyID();
 						CompanyDuude.NewCompany(c);
+						
 						CompanyDuude.Question(c);
+						if (GSWindow.IsOpen(GSWindow.WC_GOAL_QUESTION, 0)) {
+							GSWindow.Highlight(GSWindow.WC_MAIN_TOOLBAR, 0, GSWindow.WID_TN_STORY, GSWindow.TC_WHITE);
+						}
 					break;
 					}
 			case	GSEvent.ET_COMPANY_BANKRUPT: {
@@ -72,16 +76,17 @@ function TeamDuude::HandleEvents() {
 			case	GSEvent.ET_GOAL_QUESTION_ANSWER: {
 						local e = GSEventGoalQuestionAnswer.Convert(event);
 						local i = e.GetUniqueID();
-						// local c = e.GetCompanyID();
 						local b = e.GetButton();
 						if (b == GSGoal.BUTTON_ACCEPT) {
 							if (GSGoal.IsValidGoal(i)) {
 								GSGoal.SetText(GSCompany.ResolveCompanyID(i), GSText(GSText.STR_ACCEPTED_RULES, i));
 								GSGoal.SetCompleted(GSCompany.ResolveCompanyID(i), true);
-								// GSStoryPage.Show(CompanyDuude.GetPageID(15, 0));
+								GSStoryPage.Show(CompanyDuude.GetPageID(i, 0));
+								GSLog.Warning("Company #"+i+" "+GSCompany.GetName(i)+" accepted rules");
 							}
 						} else if (b == GSGoal.BUTTON_DECLINE) {
 								TeamDuude.FeedTheDuude(i);
+								GSLog.Warning("Company #"+i+" "+GSCompany.GetName(i)+" declined rules muahhhahaha");
 						} else {
 							
 						}
