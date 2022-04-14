@@ -2,31 +2,43 @@ require("company.nut");
 require("utility.nut");
 
 class TeamDuude extends GSController {
-	constructor() {}
+	loadedgame = null;
+	constructor() {
+		loadedgame = null;
+	}
 }
 
 function TeamDuude::Start() {
-	this.Init();
-	this.Sleep(1);
+	this.Init(loadedgame);
+	// this.Sleep(74);
+	local loop = 0;
 	while (true) {
+		loop++;
+		if ((loop % 10) == 0) {
+			CheckAccept();
+		}
 		HandleEvents();
-		this.Sleep(1);
+		this.Sleep(7);
 	}
 }
 
-function TeamDuude::Init() {
+function TeamDuude::Init(loaded) {
 	for (local i = 0; i < 15; i++) {
-		CacheDuude.cargo_handle.AddItem(i, 0);
+		// CacheDuude.cargo_handle.AddItem(i, 0);
 		CacheDuude.vehicle[i] = GSList();
 	}
 	local caching = CompanyDuude();
-	caching = CacheDuude("companyDate", 0);
-	caching = CacheDuude("supply_town", 0);
-	caching = CacheDuude("supply_industry", 0);
-	caching = CacheDuude("reward", 0);
-	caching = CacheDuude("reward_balance", 0);
-	caching = CacheDuude("gabriel", 0);
-	CacheDuude.FindCargoUsage();
+	// CacheDuude.FindCargoUsage();
+	local loadlimit = (loaded != null);
+	if (loadlimit) {
+		for (local i = 0; i < loaded.ccPage.len(); i++)	{ CompanyDuude.cPage[i] = loaded.ccPage[i]; }
+		for (local i = 0; i < loaded.ccRank.len(); i++)	{ CompanyDuude.gElement[i] = loaded.ccRank[i]; }
+		for (local i = 0; i < 15; i++)	{ CompanyDuude.NewCompany(i); }
+		// GSLog.Info("savegame type="+typeof(loaded.element)+" datasize="+loaded.element.len());
+		// for (local i = 0; i < loaded.bigdata.len(); i++)	{ CacheDuude.bigarray[i] = loaded.bigdata[i]; }
+		local x = 0;
+		local buff = [];
+		}
 	CompanyDuude.Init();
 	GSLog.Info("Welcome use page " + CompanyDuude.GetPageID(15, 0));
 	GSLog.Info("Rules use page " + CompanyDuude.GetPageID(16, 0));
@@ -38,7 +50,7 @@ function TeamDuude::Init() {
 	local wait = 0 * 30 * 74
 	wait = true;
 	GSLog.Warning("Waiting companies...");
-	while (wait)
+	while (wait) 
 		for (local i = 0; i < 15; i++) {
 			if (GSCompany.ResolveCompanyID(i) != GSCompany.COMPANY_INVALID) {
 				CompanyDuude.StoryUpgrade();
@@ -59,11 +71,11 @@ function TeamDuude::HandleEvents() {
 					local e = GSEventCompanyNew.Convert(event);
 					local c = e.GetCompanyID();
 					CompanyDuude.NewCompany(c);
-					GSController.Sleep(37);
+					GSController.Sleep(7);
 					CompanyDuude.Question(c);
-					if (!GSWindow.IsOpen(GSWindow.WC_GOAL_QUESTION, 0)) {
-						GSWindow.Highlight(GSWindow.WC_MAIN_TOOLBAR, 0, GSWindow.WID_TN_STORY, GSWindow.TC_WHITE);
-					}
+					// if (!GSWindow.IsOpen(GSWindow.WC_GOAL_QUESTION, 0)) {
+						// GSWindow.Highlight(GSWindow.WC_MAIN_TOOLBAR, 0, GSWindow.WID_TN_STORY, GSWindow.TC_WHITE);
+					// }
 					break;
 					}
 
@@ -78,17 +90,25 @@ function TeamDuude::HandleEvents() {
 			case	GSEvent.ET_GOAL_QUESTION_ANSWER: {
 					local e = GSEventGoalQuestionAnswer.Convert(event);
 					local i = e.GetUniqueID();
+					local c = e.GetCompany();
 					local b = e.GetButton();
+					if (GSStoryPage.IsValidStoryPage(CompanyDuude.GetPageID(c, 0))) {
+						CompanyDuude.gElement[i] = GSStoryPage.NewElement(CompanyDuude.GetPageID(c, 0), )
+					}
 					if (b == GSGoal.BUTTON_ACCEPT) {
 						if (GSGoal.IsValidGoal(i)) {
-							GSGoal.SetText(GSCompany.ResolveCompanyID(i), GSText(GSText.STR_ACCEPTED_RULES, i));
-							GSGoal.SetCompleted(GSCompany.ResolveCompanyID(i), true);
-							GSStoryPage.Show(CompanyDuude.GetPageID(i, 0));
-							GSLog.Warning("Company #" + i + " " + GSCompany.GetName(i) + " accepted rules");
+							GSGoal.SetText(i, GSText(GSText.STR_ACCEPTED_RULES, c));
+							GSGoal.SetCompleted(i, true);
 						}
+						if (GSGoal.IsValidGoal(CompanyDuude.GetGoalID(15))) {
+							GSGoal.SetText(CompanyDuude.GetGoalID(15), GSText(GSText.STR_ACCEPTED_RULES, c));
+							GSGoal.SetCompleted(CompanyDuude.GetGoalID(15), true);
+						}
+						GSStoryPage.Show(CompanyDuude.GetPageID(c, 0));
+						GSLog.Warning("Company #" + c + " " + GSCompany.GetName(c) + " accepted rules");
 					} else if (b == GSGoal.BUTTON_DECLINE) {
-						TeamDuude.FeedTheDuude(i);
-						GSLog.Warning("Company #" + i + " " + GSCompany.GetName(i) + " declined rules muahhhahaha");
+						TeamDuude.FeedTheDuude(c, i);
+						GSLog.Warning("Company #" + c + " " + GSCompany.GetName(c) + " declined rules muahhhahaha");
 					} else {
 					}
 					}
@@ -97,12 +117,35 @@ function TeamDuude::HandleEvents() {
 	}
 }
 
-function TeamDuude::FeedTheDuude(i) {
-	if (GSCompany.ResolveCompanyID(i) != GSCompany.COMPANY_INVALID) {
-		GSCompany.ChangeBankBalance(GSCompany.ResolveCompanyID(i), -GSCompany.GetBankBalance(GSCompany.ResolveCompanyID(i)) * 99, GSCompany.EXPENSES_OTHER, GSMap.TILE_INVALID);
+function TeamDuude::CheckAccept() {
+}
+
+function TeamDuude::FeedTheDuude(c, i) {
+	if (GSCompany.ResolveCompanyID(c) != GSCompany.COMPANY_INVALID) {
+		GSCompany.ChangeBankBalance(GSCompany.ResolveCompanyID(c), -GSCompany.GetBankBalance(GSCompany.ResolveCompanyID(c)) * 99, GSCompany.EXPENSES_OTHER, GSMap.TILE_INVALID);
 		if (GSGoal.IsValidGoal(i)) {
-			GSGoal.SetText(GSCompany.ResolveCompanyID(i), GSText(GSText.STR_DECLINED_RULES, i));
-			GSGoal.SetCompleted(GSCompany.ResolveCompanyID(i), true);
+			GSGoal.SetText(i, "Well... Try to survive");
+			GSGoal.SetCompleted(i, true);
+		}
+		if (GSGoal.IsValidGoal(CompanyDuude.GetGoalID(15))) {
+			GSGoal.SetText(CompanyDuude.GetGoalID(15), GSText(GSText.STR_DECLINED_RULES, c));
+			GSGoal.SetCompleted(CompanyDuude.GetGoalID(15), true);
 		}
 	}
+}
+
+function TeamDuude::Load(version, data) {
+	GSLog.Info("Loading savegame version "+version);
+	loadedgame = data;
+}
+
+function TeamDuude::Save() {
+	GSLog.Info("saving...");
+	local table = {
+		ccPage = null,
+		ccRank = null,
+	}
+	table.ccPage = CompanyDuude.cPage;
+	table.ccRank = CompanyDuude.gElement;
+	return table;
 }

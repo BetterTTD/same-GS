@@ -15,7 +15,7 @@ class CompanyDuude {
 		for (local i = 0; i < 64; i++) {
 			gElement.push(-1);
 		}
-		for (local i = 0; i < 15; i++) {
+		for (local i = 0; i < 16; i++) {
 			cGoal.push(-1);
 		}
 	}
@@ -68,6 +68,18 @@ function CompanyDuude::GetPageID(cID, opt) {
 	return CompanyDuude.cPage[x + opt];
 }
 
+function CompanyDuude::GetGoalID(cID) {
+	if (cID > 15 || cID < 0) {
+		GSLog.Error("Error: can't set goalID - Bad Value" + cID);
+		return -1;
+	}
+	if (cID == 15 || cID > 16) {
+		cID = 15;
+	}
+	return CompanyDuude.cGoal[cID];
+}
+
+
 function CompanyDuude::RemoveCompany(cID) {
 	if (cID == -1) {
 		return;
@@ -87,23 +99,11 @@ function CompanyDuude::RemoveCompany(cID) {
 	local cargo_list = GSCargoList();
 	foreach(cargo, _ in cargo_list) {
 		local label = GSCargo.GetCargoLabel(cargo);
-		if (Utils.INArray(label, CacheDuude.cargo_tracker) != -1) {
-			CacheDuude.SetData(label, cID, 0);
-		}
 	}
 }
 
 function CompanyDuude::ValueReset(company) {
 	CompanyDuude.cPoints[company] = 0;
-	CacheDuude.cargo_handle.SetValue(company, 0);
-	CacheDuude.vehicle[16] = 0;
-	CacheDuude.vehicle[15] = GSList();
-	CacheDuude.vehicle[company] = GSList();
-	CacheDuude.SetData("town_supply", company, 0);
-	CacheDuude.SetData("industry_supply", company, 0);
-	CacheDuude.SetData("reward", company, 0);
-	CacheDuude.SetData("reward_balance", company, 0);
-	CacheDuude.SetData("gabriel", company, 0);
 }
 
 function CompanyDuude::NewCompany(cID) {
@@ -129,13 +129,18 @@ function CompanyDuude::NewCompany(cID) {
 }
 
 function CompanyDuude::Question(cID) {
-	if (!GSGoal.IsValidGoal(GSCompany.ResolveCompanyID(cID))) {
-		CompanyDuude.cGoal[cID] = GSGoal.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_QUESTION_RULES2, cID), GSGoal.GT_COMPANY, GSCompany.ResolveCompanyID(cID));
-		if (GSGame.IsMultiplayer() || !GSGame.IsMultiplayer()) {
-			GSGoal.Question(cID, GSCompany.ResolveCompanyID(cID), GSText(GSText.STR_QUESTION_RULES1), GSGoal.QT_INFORMATION, GSGoal.BUTTON_ACCEPT + GSGoal.BUTTON_DECLINE);
-		}
-		GSLog.Warning("Company #" + cID + " " + GSCompany.GetName(cID) + " asked about rules");
+	if (!GSGoal.IsValidGoal(CompanyDuude.GetGoalID(15))) {
+		CompanyDuude.cGoal[15] = GSGoal.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_QUESTION_RULES2, cID), GSGoal.GT_COMPANY, GSCompany.ResolveCompanyID(cID));
+	} else {
+		CompanyDuude.cGoal[15] = GSGoal.New(GSCompany.COMPANY_INVALID, GSText(GSText.STR_QUESTION_RULES2, cID), GSGoal.GT_COMPANY, GSCompany.ResolveCompanyID(cID));
 	}
+	if (GSGoal.IsValidGoal(GSCompany.ResolveCompanyID(cID))) {
+		CompanyDuude.cGoal[cID] = GSGoal.New(cID, GSText(GSText.STR_QUESTION_RULES2, cID), GSGoal.GT_STORY_PAGE, CompanyDuude.GetPageID(cID, 0));
+	}
+	if (GSGame.IsMultiplayer() || !GSGame.IsMultiplayer()) {
+			GSGoal.Question(CompanyDuude.cGoal[cID], GSCompany.ResolveCompanyID(cID), GSText(GSText.STR_QUESTION_RULES1), GSGoal.QT_INFORMATION, GSGoal.BUTTON_ACCEPT + GSGoal.BUTTON_DECLINE);
+	}
+	GSLog.Warning("Company #" + cID + " " + GSCompany.GetName(cID) + " asked about rules");
 }
 
 function CompanyDuude::Init() {

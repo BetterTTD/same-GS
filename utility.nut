@@ -3,7 +3,7 @@ class CacheDuude {
 	static vehicle = array(17, -1);
 	static snowtown = GSList();
 	static powerplant = GSList();
-	static cargo_handle = GSList();
+	// static cargo_handle = GSList();
 	static cargo_town = GSList();
 	static cargo_industry = GSList();
 	static cargo_tracker = ["WOOD", "OIL_", "TOYS", "WATR", "GOOD", "DIAM"];
@@ -196,27 +196,27 @@ function CacheDuude::FindCargoUsage() {
 	local indtype_list = GSIndustryTypeList();
 	foreach(item, value in indtype_list) {
 		local cargolist = GSIndustryType.GetAcceptedCargo(item);
-		foreach(cargo, _ in cargolist) {
-			if (!CacheDuude.cargo_industry.HasItem(cargo)) {
-				CacheDuude.cargo_industry.AddItem(cargo, item);
-			}
-		}
+		// foreach(cargo, _ in cargolist) {
+			// if (!CacheDuude.cargo_industry.HasItem(cargo)) {
+				// CacheDuude.cargo_industry.AddItem(cargo, item);
+			// }
+		// }
 	}
 	local cargo_list = GSCargoList();
 	CacheDuude.cargo_town.AddList(cargo_list);
-	foreach(cargo, _ in cargo_list) {
+	// foreach(cargo, _ in cargo_list) {
 		if (GSCargo.GetTownEffect(cargo) == GSCargo.TE_NONE) {
 			CacheDuude.cargo_town.RemoveItem(cargo);
 		}
-		local label = GSCargo.GetCargoLabel(cargo);
-		if (Utils.INArray(label, CacheDuude.cargo_tracker) != -1) {
-			local entry = CacheDuude(label, 0);
-		}
-	}
+		// local label = GSCargo.GetCargoLabel(cargo);
+		// if (Utils.INArray(label, CacheDuude.cargo_tracker) != -1) {
+		// 	local entry = CacheDuude(label, 0);
+		// }
+	// }
 	local o_str = [];
-	foreach(cargo, _ in CacheDuude.cargo_town) {
-		o_str.push(GSCargo.GetCargoLabel(cargo));
-	}
+	// foreach(cargo, _ in CacheDuude.cargo_town) {
+		// o_str.push(GSCargo.GetCargoLabel(cargo));
+	// }
 	GSLog.Info("Towns accept cargo : " + Utils.ArrayListToString(o_str));
 	o_str = [];
 	foreach(cargo, _ in CacheDuude.cargo_industry) {
@@ -233,27 +233,27 @@ function CacheDuude::Monitoring() {
 		local stown = CacheDuude.GetData("supply_town", company);
 		if (stown < 1000000) {
 			foreach(town, _ in town_list) {
-				if (GSTown.GetRating(town, company) != 0) {
-					foreach(cargo, _ in CacheDuude.cargo_town) {
-						local z = GSCargoMonitor.GetTownDeliveryAmount(company, cargo, town, true);
-						if (z > 0) {
-							local k = CacheDuude.cargo_handle.GetValue(company);
-							k = (k | (1 << cargo));
-							CacheDuude.cargo_handle.SetValue(company, k);
-						}
-						if (GSCargo.GetCargoLabel(cargo) == "GOOD")
-						{
-							local p = CacheDuude.GetData("GOOD", company);
-							p += z;
-							CacheDuude.SetData("GOOD", company, p);
-						}
-						stown += z;
-						if (stown > 1000000) {
-							GSCargoMonitor.GetTownDeliveryAmount(company, cargo, town, false);
-						}
-						CacheDuude.SetData("supply_town", company, stown);
-					}
-				}
+				// if (GSTown.GetRating(town, company) != 0) {
+					// foreach(cargo, _ in CacheDuude.cargo_town) {
+						// local z = GSCargoMonitor.GetTownDeliveryAmount(company, cargo, town, true);
+						// if (z > 0) {
+						// 	local k = CacheDuude.cargo_handle.GetValue(company);
+						// 	k = (k | (1 << cargo));
+						// 	CacheDuude.cargo_handle.SetValue(company, k);
+						// }
+						// if (GSCargo.GetCargoLabel(cargo) == "GOOD")
+						// {
+						// 	local p = CacheDuude.GetData("GOOD", company);
+						// 	p += z;
+						// 	CacheDuude.SetData("GOOD", company, p);
+						// }
+						// stown += z;
+						// if (stown > 1000000) {
+						// 	GSCargoMonitor.GetTownDeliveryAmount(company, cargo, town, false);
+						// }
+						// CacheDuude.SetData("supply_town", company, stown);
+					// }
+				// }
 			}
 		}
 		local sind = CacheDuude.GetData("supply_industry", company);
